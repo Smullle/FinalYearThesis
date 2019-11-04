@@ -4,14 +4,16 @@ Inspired by:
 https://github.com/panyang/Wikipedia_Word2vec/blob/master/v1/process_wiki.py
 """
 
-import sys
 from gensim.corpora import WikiCorpus
+import warnings
+
+warnings.filterwarnings(action='ignore')
 
 
 def make_corpus(in_f, out_f):
     """Convert Wikipedia xml dump file to text corpus"""
 
-    output = open(out_f, 'w')
+    output = open(out_f, 'w', encoding='utf-8')
     wiki = WikiCorpus(in_f)
 
     i = 0
@@ -25,10 +27,6 @@ def make_corpus(in_f, out_f):
 
 
 if __name__ == '__main__':
-
-    if len(sys.argv) != 3:
-        print('Usage: python make_wiki_corpus.py <wikipedia_dump_file> <processed_text_file>')
-        sys.exit(1)
-    in_f = sys.argv[1]
-    out_f = sys.argv[2]
+    in_f = "D:\enwiki-latest-pages-articles-multistream.xml.bz2"
+    out_f = "D:\wiki.txt"
     make_corpus(in_f, out_f)

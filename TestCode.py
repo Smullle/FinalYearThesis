@@ -15,7 +15,7 @@ from gensim.models import Word2Vec
 
 #  Reads ‘alice.txt’ file
 
-sample = open("C:\\Users\\user\\Desktop\\alice.txt", "r")
+sample = open("D:\\wiki.txt", "r")
 
 s = sample.read()
 
