@@ -13,18 +13,19 @@ class MyCorpus(object):
     """An interator that yields sentences (lists of str)."""
 
     def __iter__(self):
-        corpus_path = datapath('D:\WikiData\TENGB\wiki10.txt')
+        corpus_path = datapath('X:\Thesis\TinyWiki.txt')
         for line in open(corpus_path, errors="ignore"):
             # assume there's one document per line, tokens separated by whitespace
             yield utils.simple_preprocess(line)
 
 
 data = MyCorpus()
-doc = nlp(data)
-#output = open('D:\WikiData\Trained\sense2vec\parsed.txt')
-doc.sentences[0].print_dependencies()
-#output.write(*[word.text + "|" + word.upos for sent in doc.sentences for word in sent.words])
-#output.close()
+for word in data:
+    doc = nlp(word)
+    output = open('X:\Thesis\parsed.txt')
+    # doc.sentences[0].print_dependencies()
+    output.write(*[word.text + "|" + word.upos])
+    output.close()
 
 #extract sent by sent from iter and pass to nlp()
 #add parsed sen to file and continue
