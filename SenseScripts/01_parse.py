@@ -14,7 +14,7 @@ class MyCorpus(object):
     """An interator that yields sentences (lists of str)."""
 
     def __iter__(self):
-        corpus_path = datapath('D:\WikiData\SmallWiki.txt')
+        corpus_path = datapath('D:\WikiData\TinyWiki.txt')
         for line in open(corpus_path, errors="ignore"):
             # assume there's one document per line, tokens separated by whitespace
             yield utils.simple_preprocess(line)
@@ -47,7 +47,8 @@ def main(in_file, out_dir, spacy_model="en_core_web_sm", n_process=1):
     data = MyCorpus()
     i = 0
     for texts in data:
-        docs = nlp.pipe(texts, n_process=n_process)
+        str1 = ' '.join(texts)
+        docs = nlp.pipe(str1, n_process=n_process)
         for doc in tqdm.tqdm(docs, desc="Docs", unit=""):
             doc_bin.add(doc)
     msg.good(f"Processed {len(doc_bin)} docs")
