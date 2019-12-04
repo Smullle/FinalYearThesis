@@ -15,7 +15,7 @@ from gensim.models import Word2Vec
 
 #  Reads ‘alice.txt’ file
 
-sample = open("D:\\wiki.txt", "r")
+sample = open("D:\WikiData\FIVEGB\wiki5.txt", "r")
 
 s = sample.read()
 
@@ -119,6 +119,8 @@ print("model1.similarity('get, 'eat')", model1.similarity('get', 'eat'))
 
 # Create Skip Gram model
 
+model1.save("word2vec.model")
+
 model2 = gensim.models.Word2Vec(data, min_count=1, size=100,
 
                                 window=10, sg=1)
@@ -148,5 +150,7 @@ print("2model2.similarity('run', 'talk')", model2.similarity('run', 'talk'))
 print("2model2.similarity('run', 'hatter')", model2.similarity('run', 'hatter'))
 
 print("2model2.similarity('run', 'think')", model2.similarity('run', 'think'))
+
+model2.save("word2vecSkipG.model")
 
 # print(model1['run'])
