@@ -15,7 +15,7 @@ def word_vec_query(verb, *args, **compositions):
     return w2v.most_similar(verb)
 
 
-def sense_query(verb):
+def sense_vec_query(verb):
     query = verb
     assert query in s2v
     # vector = s2v[query]
@@ -67,6 +67,20 @@ results.write(word_vec_query(None, p=["buy"], n=["sell"])[0] - word_vec_query(No
 
 results.write("sense2vec")
 results.write("Word lists")
+results.write("2similarity('walked', 'talk') ", s2v.similarity('walked', 'talk'))
+results.write("2similarity('walked', 'slept') ", s2v.similarity('walked', 'slept'))
+results.write("2model2.similarity('run', 'walk')", s2v.similarity('run', 'walk'))
+results.write("2model2.similarity('run', 'drive')", s2v.similarity('run', 'drive'))
+results.write("2model2.similarity('run', 'talk')", s2v.similarity('run', 'talk'))
+results.write("2model2.similarity('run', 'hatter')", s2v.similarity('run', 'hatter'))
+results.write("2model2.similarity('run', 'think')", s2v.similarity('run', 'think'))
+
+results.write("Most similar")
+results.write("Most similar 'run' ", sense_vec_query("run"))
+results.write("Most similar 'walked' ", sense_vec_query("walked"))
+results.write("Most similar 'jogged' ", sense_vec_query("jogged"))
+results.write("Most similar 'talked' ", sense_vec_query("talked"))
+results.write("Most similar 'slept' ", sense_vec_query("slept"))
 
 results.write("Logical entailment")
 results.write("Compositions")
