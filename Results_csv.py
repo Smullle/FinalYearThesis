@@ -21,10 +21,9 @@ def sense_vec_query(verb, n=3):
     return s2v.most_similar(query, n=n)
 
 
-results = open("D:\\Results\\results.csv", "a")
+results = open("D:\\Results\\results.csv", "w", newline='')
 
 
-results_writer = csv.writer(results, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 w2v_model = "D:\\WikiData\\Trained\\word2vec\\10GB\\word2vec.model"
 s2v_model = "D:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
 
@@ -32,19 +31,29 @@ w2v = gensim.models.Word2Vec.load(w2v_model)
 s2v = Sense2Vec().from_disk(s2v_model)
 
 ########################################################################################################################
-fieldnames = ['Future Past', 'word2vec', 'sense2vec', 'WordNet']
+fieldnames = ['Future-Past', 'word2vec', 'sense2vec', 'WordNet']
+results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
+results_writer.writeheader()
 results_writer.writerow({'Future-Past': 'run-ran',
                          'word2vec': w2v.similarity('run', 'ran'),
                          'sense2vec': s2v.similarity(['run' + '|VERB'], ['ran' + '|VERB']),
                          'WordNet': ''})
-
+results_writer.writerow({'Future-Past': '',
+                         'word2vec': '',
+                         'sense2vec': '',
+                         'WordNet': ''})
 ########################################################################################################################
 fieldnames = ['Most Similar', 'word2vec', 'sense2vec']
+results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
+results_writer.writeheader()
 results_writer.writerow({'Most Similar': 'run',
-                         'word2vec': word_vec_query("run"),
+                         'word2vec': word_vec_query("run", topn=3),
                          'sense2vec': sense_vec_query("run" + '|VERB')})
+results_writer.writerow({'Most Similar': '',
+                         'word2vec': '',
+                         'sense2vec': ''})
 
 # write_string += "Most similar"
 # write_string += ("Most similar 'run' " + str(word_vec_query("run")))
@@ -55,18 +64,29 @@ results_writer.writerow({'Most Similar': 'run',
 
 ########################################################################################################################
 fieldnames = ['Oddballs', 'word2vec', 'sense2vec-VERB', 'sense2vec-NOUN']
+results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
+results_writer.writeheader()
 results_writer.writerow({'Oddballs': 'sleep',
-                         'word2vec': word_vec_query("sleep"),
-                         'sense2vec-VERB': sense_vec_query("run" + '|VERB'),
-                         'sense2vec-NOUN': sense_vec_query("run" + '|NOUN')})
-
+                         'word2vec': word_vec_query("sleep", topn=3),
+                         'sense2vec-VERB': sense_vec_query("sleep" + '|VERB'),
+                         'sense2vec-NOUN': sense_vec_query("sleep" + '|NOUN')})
+results_writer.writerow({'Oddballs': '',
+                         'word2vec': '',
+                         'sense2vec-VERB': '',
+                         'sense2vec-NOUN': ''})
 ########################################################################################################################
-fieldnames = ['Verb to Verb', 'word2vec', 'sense2vec']
+fieldnames = ['Verb to Verb', 'word2vec', 'sense2vec', 'WordNet']
+results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
+results_writer.writeheader()
 results_writer.writerow({'Verb to Verb': 'run-walk',
                          'word2vec': w2v.similarity('run', 'walk'),
                          'sense2vec': s2v.similarity(['run' + '|VERB'], ['walk' + '|VERB']),
+                         'WordNet': ''})
+results_writer.writerow({'Verb to Verb': '',
+                         'word2vec': '',
+                         'sense2vec': '',
                          'WordNet': ''})
 
 # write_string += ("2similarity('walked', 'talk') " + str(w2v.similarity('walked', 'talk')))
@@ -78,21 +98,31 @@ results_writer.writerow({'Verb to Verb': 'run-walk',
 # write_string += ("2model2.similarity('run', 'think') " + str(w2v.similarity('run', 'think')))
 
 ########################################################################################################################
-fieldnames = ['Noun to Noun', 'word2vec', 'sense2vec']
+fieldnames = ['Noun to Noun', 'word2vec', 'sense2vec', 'WordNet']
+results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
-results_writer.writerow({'Noun to Noun': 'Laptop-Music',
-                         'word2vec': w2v.similarity('Laptop', 'Music'),
-                         'sense2vec': s2v.similarity(['Laptop' + '|NOUN'], ['Music' + '|NOUN']),
+results_writer.writeheader()
+results_writer.writerow({'Noun to Noun': 'laptop-music',
+                         'word2vec': w2v.similarity('laptop', 'music'),
+                         'sense2vec': s2v.similarity(['laptop' + '|NOUN'], ['music' + '|NOUN']),
                          'WordNet': ''})
-
+results_writer.writerow({'Noun to Noun': '',
+                         'word2vec': '',
+                         'sense2vec': '',
+                         'WordNet': ''})
 ########################################################################################################################
-fieldnames = ['Preposition to Preposition', 'word2vec', 'sense2vec']
+fieldnames = ['Preposition to Preposition', 'word2vec', 'sense2vec', 'WordNet']
+results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
-results_writer.writerow({'Noun to Noun': 'in-of',
+results_writer.writeheader()
+results_writer.writerow({'Preposition to Preposition': 'in-of',
                          'word2vec': w2v.similarity('in', 'of'),
                          'sense2vec': s2v.similarity(['in' + '|ADP'], ['of' + '|ADP']),
                          'WordNet': ''})
-
+results_writer.writerow({'Preposition to Preposition': '',
+                         'word2vec': '',
+                         'sense2vec': '',
+                         'WordNet': ''})
 ########################################################################################################################
 
 # write_string += "Logical entailment"
