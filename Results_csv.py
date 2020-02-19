@@ -1,6 +1,8 @@
 import csv
+import re
 import gensim
 from sense2vec import Sense2Vec
+from nltk.corpus import wordnet as wn
 
 
 def word_vec_query(verb, positive=None, negative=None, topn=1):
@@ -21,6 +23,16 @@ def sense_vec_query(verb, n=3):
     return s2v.most_similar(query, n=n)
 
 
+def wordnet_similarity(word1, word2, pos):
+    word1 = wn.synsets(word1, pos=pos)[0]
+    word2 = wn.synsets(word2, pos=pos)[0]
+    word1 = re.search("'.*'", str(word1)).group(0)
+    word2 = re.search("'.*'", str(word2)).group(0)
+    word1 = wn.synset(word1.replace("'", ""))
+    word2 = wn.synset(word2.replace("'", ""))
+    return word1.path_similarity(word2)
+
+
 results = open("D:\\Results\\results.csv", "w", newline='')
 
 
@@ -38,7 +50,7 @@ results_writer.writeheader()
 results_writer.writerow({'Future-Past': 'run-ran',
                          'word2vec': w2v.similarity('run', 'ran'),
                          'sense2vec': s2v.similarity(['run' + '|VERB'], ['ran' + '|VERB']),
-                         'WordNet': ''})
+                         'WordNet': wordnet_similarity('run', 'ran', wn.VERB)})
 results_writer.writerow({'Future-Past': '',
                          'word2vec': '',
                          'sense2vec': '',
@@ -83,7 +95,7 @@ results_writer.writeheader()
 results_writer.writerow({'Verb to Verb': 'run-walk',
                          'word2vec': w2v.similarity('run', 'walk'),
                          'sense2vec': s2v.similarity(['run' + '|VERB'], ['walk' + '|VERB']),
-                         'WordNet': ''})
+                         'WordNet': wordnet_similarity('run', 'walk', wn.VERB)})
 results_writer.writerow({'Verb to Verb': '',
                          'word2vec': '',
                          'sense2vec': '',
@@ -105,24 +117,22 @@ results_writer.writeheader()
 results_writer.writerow({'Noun to Noun': 'laptop-music',
                          'word2vec': w2v.similarity('laptop', 'music'),
                          'sense2vec': s2v.similarity(['laptop' + '|NOUN'], ['music' + '|NOUN']),
-                         'WordNet': ''})
+                         'WordNet': wordnet_similarity('laptop', 'music', wn.NOUN)})
 results_writer.writerow({'Noun to Noun': '',
                          'word2vec': '',
                          'sense2vec': '',
                          'WordNet': ''})
 ########################################################################################################################
-fieldnames = ['Preposition to Preposition', 'word2vec', 'sense2vec', 'WordNet']
+fieldnames = ['Preposition to Preposition', 'word2vec', 'sense2vec']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
 results_writer.writeheader()
 results_writer.writerow({'Preposition to Preposition': 'in-of',
                          'word2vec': w2v.similarity('in', 'of'),
-                         'sense2vec': s2v.similarity(['in' + '|ADP'], ['of' + '|ADP']),
-                         'WordNet': ''})
+                         'sense2vec': s2v.similarity(['in' + '|ADP'], ['of' + '|ADP'])})
 results_writer.writerow({'Preposition to Preposition': '',
                          'word2vec': '',
-                         'sense2vec': '',
-                         'WordNet': ''})
+                         'sense2vec': ''})
 ########################################################################################################################
 
 # write_string += "Logical entailment"
