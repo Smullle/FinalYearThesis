@@ -26,16 +26,17 @@ def wordnet_first_last(word, pos):
         first_synset = re.search("'.*'", str(first_synset)).group(0)
         last_synset = synsets[-1]
         last_synset = re.search("'.*'", str(last_synset)).group(0)
-        first_synset = [str(lemma.name()) for lemma in wn.synset(first_synset.replace("'", "")).lemmas()]
-        last_synset = [str(lemma.name()) for lemma in wn.synset(last_synset.replace("'", "")).lemmas()]
+        first_synset = first_synset[1:-1]
+        last_synset = last_synset[1:-1]
+        first_synset = [str(lemma.name()) for lemma in wn.synset(first_synset).lemmas()]
+        last_synset = [str(lemma.name()) for lemma in wn.synset(last_synset).lemmas()]
+        # remove quotes, but not apostrophes
         first_word_first_synset = first_synset[0]
         last_word_first_synset = first_synset[-1]
         last_word_last_synset = last_synset[-1]
         return [first_word_first_synset, last_word_first_synset, last_word_last_synset]
-    except IndexError:
+    except (TypeError, KeyError, IndexError):
         # return large value if word not in wordnet
-        return [100, 100, 100]
-    except KeyError:
         return [100, 100, 100]
 
 
@@ -46,7 +47,10 @@ results_writer.writeheader()
 for i in range(1000):
     verb = random.choice(verbs)
     print(verb)
-    wordnet_verbs = wordnet_first_last(verb, wn.VERB)
+    try:
+        wordnet_verbs = wordnet_first_last(verb, wn.VERB)
+    except KeyError:
+        continue
     try:
         first_first = s2v.similarity([verb + '|VERB'], [wordnet_verbs[0] + '|VERB'])
         last_first = s2v.similarity([verb + '|VERB'], [wordnet_verbs[1] + '|VERB'])
@@ -56,7 +60,7 @@ for i in range(1000):
                                      'first word in first synset': first_first,
                                      'last word in first synset': last_first,
                                      'last word in last synset': last_last})
-    except TypeError:
+    except (TypeError, KeyError):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
 
@@ -69,7 +73,10 @@ results_writer.writeheader()
 for i in range(10000):
     noun = random.choice(nouns)
     print(noun)
-    wordnet_verbs = wordnet_first_last(noun, wn.NOUN)
+    try:
+        wordnet_verbs = wordnet_first_last(noun, wn.NOUN)
+    except KeyError:
+        continue
     try:
         first_first = s2v.similarity([noun + '|NOUN'], [wordnet_verbs[0] + '|NOUN'])
         last_first = s2v.similarity([noun + '|NOUN'], [wordnet_verbs[1] + '|NOUN'])
@@ -79,7 +86,7 @@ for i in range(10000):
                                      'first word in first synset': first_first,
                                      'last word in first synset': last_first,
                                      'last word in last synset': last_last})
-    except TypeError:
+    except (TypeError, KeyError):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
 
@@ -92,7 +99,10 @@ results_writer.writeheader()
 for i in range(1000):
     verb = random.choice(verbs)
     print(verb)
-    wordnet_verbs = wordnet_first_last(verb, wn.VERB)
+    try:
+        wordnet_verbs = wordnet_first_last(verb, wn.VERB)
+    except KeyError:
+        continue
     try:
         first_first = w2v.similarity(verb, wordnet_verbs[0])
         last_first = w2v.similarity(verb, wordnet_verbs[1])
@@ -102,8 +112,8 @@ for i in range(1000):
                                      'first word in first synset': first_first,
                                      'last word in first synset': last_first,
                                      'last word in last synset': last_last})
-    except TypeError:
-        # ignore phrasal verbs, only single verbs accepted by s2v
+    except (TypeError, KeyError):
+        # ignore phrasal verbs, only single verbs accepted by w2v
         continue
 
 results_w2v_verbs.close()
@@ -115,7 +125,10 @@ results_writer.writeheader()
 for i in range(10000):
     noun = random.choice(nouns)
     print(noun)
-    wordnet_verbs = wordnet_first_last(noun, wn.NOUN)
+    try:
+        wordnet_verbs = wordnet_first_last(noun, wn.NOUN)
+    except KeyError:
+        continue
     try:
         first_first = w2v.similarity(noun, wordnet_verbs[0])
         last_first = w2v.similarity(noun, wordnet_verbs[1])
@@ -125,8 +138,8 @@ for i in range(10000):
                                      'first word in first synset': first_first,
                                      'last word in first synset': last_first,
                                      'last word in last synset': last_last})
-    except TypeError:
-        # ignore phrasal verbs, only single verbs accepted by s2v
+    except (TypeError, KeyError):
+        # ignore phrasal verbs, only single verbs accepted by w2v
         continue
 
 results_w2v_noun.close()

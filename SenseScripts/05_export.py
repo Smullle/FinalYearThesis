@@ -1,10 +1,52 @@
 #!/usr/bin/env python
+import sys
+import re
 from sense2vec import Sense2Vec
 from sense2vec.util import split_key
 from pathlib import Path
 import plac
 from wasabi import msg
 import numpy
+
+
+def check_encoding(line_, enc=None, denc=sys.getdefaultencoding()):
+    """Check lines in file, the Glove training method appears to add non
+    utf-8 characters. Try ascii iso-8859-1 cp1252 and iso-8859-15 if all encodings
+    fail to work pass on the line."""
+    # check unicode
+    if isinstance(line_, str):
+        return line_
+    try:
+        new_string = str(line_, "ascii")
+        return line_
+    except UnicodeError:
+        encodings = ["utf-8", "iso-8859-1", "cp1252", "iso-8859-15"]
+
+        if denc != "ascii":
+            encodings.insert(0, denc)
+
+        if enc:
+            encodings.insert(0, enc)
+
+        for enc in encodings:
+            if (enc in ("iso-8859-15", "iso-8859-1") and
+                    re.search(r"[\x80-\x9f]", line_) is not None):
+                continue
+
+            if (enc in ("iso-8859-1", "cp1252") and
+                    re.search(r"[\xa4\xa6\xa8\xb4\xb8\xbc-\xbe]", line_) \
+                    is not None):
+                continue
+
+            try:
+                new_string = str(line_, enc)
+            except UnicodeError:
+                pass
+            else:
+                if new_string.encode(enc) == line_:
+                    return new_string
+
+        return "/"
 
 
 def _get_shape(file_):
