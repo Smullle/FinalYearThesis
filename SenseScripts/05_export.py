@@ -16,36 +16,7 @@ def check_encoding(line_, enc=None, denc=sys.getdefaultencoding()):
     # check unicode
     if isinstance(line_, str):
         return line_
-    try:
-        new_string = str(line_, "ascii")
-        return line_
-    except UnicodeError:
-        encodings = ["utf-8", "iso-8859-1", "cp1252", "iso-8859-15"]
-
-        if denc != "ascii":
-            encodings.insert(0, denc)
-
-        if enc:
-            encodings.insert(0, enc)
-
-        for enc in encodings:
-            if (enc in ("iso-8859-15", "iso-8859-1") and
-                    re.search(r"[\x80-\x9f]", line_) is not None):
-                continue
-
-            if (enc in ("iso-8859-1", "cp1252") and
-                    re.search(r"[\xa4\xa6\xa8\xb4\xb8\xbc-\xbe]", line_) \
-                    is not None):
-                continue
-
-            try:
-                new_string = str(line_, enc)
-            except UnicodeError:
-                pass
-            else:
-                if new_string.encode(enc) == line_:
-                    return new_string
-
+    else:
         return "/"
 
 
@@ -88,10 +59,20 @@ def main(in_file, vocab_file, out_dir):
     if not output_path.exists():
         output_path.mkdir(parents=True)
         msg.good(f"Created output directory {out_dir}")
-    with input_path.open("r", encoding="utf8") as f:
+    with input_path.open("r") as inputf:
+        with open("temp.txt", "w", encoding="utf8") as temp:
+            for line in inputf:
+                if check_encoding(line) != "/":
+                    temp.write(check_encoding(line))
+    with open("temp.txt", "r", encoding="utf8") as f:
         (n_vectors, vector_size), f = _get_shape(f)
         vectors_data = f.readlines()
-    with vocab_path.open("r", encoding="utf8") as f:
+    with vocab_path.open("r") as vocabf:
+        with open("tempV.txt", "w", encoding="utf8") as temp:
+            for line in vocabf:
+                if check_encoding(line) != "/":
+                    temp.write(check_encoding(line))
+    with open("tempV.txt", "r", encoding="utf8") as f:
         vocab_data = f.readlines()
     data = []
     all_senses = set()
