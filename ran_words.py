@@ -13,7 +13,7 @@ noun_file = "/home/shanesmullen/train/vmshare/results/nounlist.txt"
 w2v = gensim.models.Word2Vec.load(w2v_model)
 s2v = Sense2Vec().from_disk(s2v_model)
 
-f = open('~/wordlists/ran_verbs.txt', 'r')
+f = open('~/wordlists/verblist.txt', 'r')
 verbs = f.read().splitlines()
 f.close()
 f = open('~/wordlists/nounlist.txt', 'r')
