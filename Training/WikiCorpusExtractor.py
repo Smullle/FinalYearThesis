@@ -27,6 +27,6 @@ def make_corpus(in_f, out_f):
 
 
 if __name__ == '__main__':
-    in_f = "D:\enwiki-latest-pages-articles-multistream.xml.bz2"
-    out_f = "D:\wiki.txt"
+    in_f = "E:\enwiki-latest-pages-articles-multistream.xml.bz2"
+    out_f = "E:\wiki.txt"
     make_corpus(in_f, out_f)

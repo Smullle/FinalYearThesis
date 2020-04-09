@@ -19,4 +19,4 @@ boxplot(s2v_fist_verb, w2v_fist_verb, s2v_last_verb, w2v_last_verb, s2v_fist_nou
 
 
 
-points(1:9, c(mean(s2v_fist_verb), mean(w2v_fist_verb), mean(s2v_last_verb), mean(w2v_last_verb), mean(s2v_fist_noun), mean(w2v_fist_noun), mean(w2v_fist_noun), mean(s2v_last_noun), mean(w2v_last_noun)), pch=18 , cex=1.5)
+points(1:9, c(mean(s2v_fist_verb), mean(w2v_fist_verb), mean(s2v_last_verb), mean(w2v_last_verb), mean(s2v_fist_noun), mean(w2v_fist_noun), mean(s2v_last_noun), mean(w2v_last_noun)), pch=18 , cex=1.5)

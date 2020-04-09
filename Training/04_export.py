@@ -59,20 +59,10 @@ def main(in_file, vocab_file, out_dir):
     if not output_path.exists():
         output_path.mkdir(parents=True)
         msg.good(f"Created output directory {out_dir}")
-    with input_path.open("r") as inputf:
-        with open("temp.txt", "w", encoding="utf8") as temp:
-            for line in inputf:
-                if check_encoding(line) != "/":
-                    temp.write(check_encoding(line))
-    with open("temp.txt", "r", encoding="utf8") as f:
+    with input_path.open("r", encoding="utf8") as f:
         (n_vectors, vector_size), f = _get_shape(f)
         vectors_data = f.readlines()
-    with vocab_path.open("r") as vocabf:
-        with open("tempV.txt", "w", encoding="utf8") as temp:
-            for line in vocabf:
-                if check_encoding(line) != "/":
-                    temp.write(check_encoding(line))
-    with open("tempV.txt", "r", encoding="utf8") as f:
+    with vocab_path.open("r", encoding="utf8") as f:
         vocab_data = f.readlines()
     data = []
     all_senses = set()

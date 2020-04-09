@@ -14,10 +14,10 @@ nlp = stanfordnlp.Pipeline(processors='tokenize,mwt,pos')  # This sets up a defa
 
 
 class MyCorpus(object):
-    """An interator that yields sentences (lists of str)."""
+    """An iterator that yields sentences (lists of str)."""
 
     def __iter__(self):
-        corpus_path = datapath('D:\WikiData\TENGB\wiki10.txt')
+        corpus_path = datapath('E:\WikiData\TENGB\wiki10.txt')
         for line in open(corpus_path, errors="ignore"):
             # assume there's one document per line, tokens separated by whitespace
             yield utils.simple_preprocess(line)
@@ -26,7 +26,7 @@ class MyCorpus(object):
 total_words = 0
 
 data = MyCorpus()
-output = open('D:\WikiData\Trained\sense2vec\Parsed\Parsed10.txt', "a")
+output = open('E:\WikiData\Trained\sense2vec\Parsed\Parsed10.txt', "a")
 for line in data:
     total_words += len(line)
     try:

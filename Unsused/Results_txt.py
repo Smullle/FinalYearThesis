@@ -20,9 +20,9 @@ def sense_vec_query(verb, n=3):
     return s2v.most_similar(query, n=n)
 
 
-results = open("D:\\Results\\results.txt", "w")
-w2v_model = "D:\\WikiData\\Trained\\word2vec\\10GB\\word2vec.model"
-s2v_model = "D:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
+results = open("E:\\Results\\results.txt", "w")
+w2v_model = "E:\\WikiData\\Trained\\word2vec\\10GB\\word2vec.model"
+s2v_model = "E:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
 s2v = Sense2Vec().from_disk(s2v_model)

@@ -33,11 +33,11 @@ def wordnet_similarity(word1, word2, pos):
     return word1.path_similarity(word2)
 
 
-results = open("D:\\Results\\results.csv", "w", newline='')
+results = open("E:\\Results\\results.csv", "w", newline='')
 
 
-w2v_model = "D:\\WikiData\\Trained\\word2vec\\10GB\\word2vec.model"
-s2v_model = "D:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
+w2v_model = "E:\\WikiData\\Trained\\word2vec\\5GB\\word2vec.model"
+s2v_model = "E:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
 s2v = Sense2Vec().from_disk(s2v_model)
@@ -47,7 +47,7 @@ fieldnames = ['Future-Past', 'word2vec', 'sense2vec', 'WordNet']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
 results_writer.writeheader()
-results_writer.writerow({'Future-Past': 'run-ran',
+results_writer.writerow({'Future-Past': 'run - ran',
                          'word2vec': w2v.similarity('run', 'ran'),
                          'sense2vec': s2v.similarity(['run' + '|VERB'], ['ran' + '|VERB']),
                          'WordNet': wordnet_similarity('run', 'ran', wn.VERB)})
@@ -83,23 +83,52 @@ results_writer.writerow({'Oddballs': 'sleep',
                          'word2vec': word_vec_query("sleep", topn=3),
                          'sense2vec-VERB': sense_vec_query("sleep" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("sleep" + '|NOUN')})
-results_writer.writerow({'Oddballs': '',
-                         'word2vec': '',
-                         'sense2vec-VERB': '',
-                         'sense2vec-NOUN': ''})
+results_writer.writerow({'Oddballs': 'play',
+                         'word2vec': word_vec_query("play", topn=3),
+                         'sense2vec-VERB': sense_vec_query("play" + '|VERB'),
+                         'sense2vec-NOUN': sense_vec_query("play" + '|NOUN')})
+results_writer.writerow({'Oddballs': 'work',
+                         'word2vec': word_vec_query("work", topn=3),
+                         'sense2vec-VERB': sense_vec_query("work" + '|VERB'),
+                         'sense2vec-NOUN': sense_vec_query("work" + '|NOUN')})
+
 ########################################################################################################################
 fieldnames = ['Verb to Verb', 'word2vec', 'sense2vec', 'WordNet']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
 results_writer.writeheader()
-results_writer.writerow({'Verb to Verb': 'run-walk',
-                         'word2vec': w2v.similarity('run', 'walk'),
-                         'sense2vec': s2v.similarity(['run' + '|VERB'], ['walk' + '|VERB']),
-                         'WordNet': wordnet_similarity('run', 'walk', wn.VERB)})
-results_writer.writerow({'Verb to Verb': '',
-                         'word2vec': '',
-                         'sense2vec': '',
-                         'WordNet': ''})
+results_writer.writerow({'Verb to Verb': 'lose - win',
+                         'word2vec': w2v.similarity('lose', 'win'),
+                         'sense2vec': s2v.similarity(['lose' + '|VERB'], ['win' + '|VERB']),
+                         'WordNet': wordnet_similarity('lose', 'win', wn.VERB)})
+results_writer.writerow({'Verb to Verb': 'shout – whisper',
+                         'word2vec': w2v.similarity('shout', 'whisper'),
+                         'sense2vec': s2v.similarity(['shout' + '|VERB'], ['whisper' + '|VERB']),
+                         'WordNet': wordnet_similarity('shout', 'whisper', wn.VERB)})
+results_writer.writerow({'Verb to Verb': 'float – sink',
+                         'word2vec': w2v.similarity('float', 'sink'),
+                         'sense2vec': s2v.similarity(['float' + '|VERB'], ['sink' + '|VERB']),
+                         'WordNet': wordnet_similarity('float', 'sink', wn.VERB)})
+results_writer.writerow({'Verb to Verb': 'borrow – lend',
+                         'word2vec': w2v.similarity('borrow', 'lend'),
+                         'sense2vec': s2v.similarity(['borrow' + '|VERB'], ['lend' + '|VERB']),
+                         'WordNet': wordnet_similarity('borrow', 'lend', wn.VERB)})
+results_writer.writerow({'Verb to Verb': 'build – destroy',
+                         'word2vec': w2v.similarity('build', 'destroy'),
+                         'sense2vec': s2v.similarity(['build' + '|VERB'], ['destroy' + '|VERB']),
+                         'WordNet': wordnet_similarity('build', 'destroy', wn.VERB)})
+results_writer.writerow({'Verb to Verb': 'punish – reward',
+                         'word2vec': w2v.similarity('punish', 'reward'),
+                         'sense2vec': s2v.similarity(['punish' + '|VERB'], ['reward' + '|VERB']),
+                         'WordNet': wordnet_similarity('punish', 'reward', wn.VERB)})
+results_writer.writerow({'Verb to Verb': 'show – hide',
+                         'word2vec': w2v.similarity('show', 'hide'),
+                         'sense2vec': s2v.similarity(['show' + '|VERB'], ['hide' + '|VERB']),
+                         'WordNet': wordnet_similarity('show', 'hide', wn.VERB)})
+results_writer.writerow({'Verb to Verb': 'laugh – cry',
+                         'word2vec': w2v.similarity('laugh', 'cry'),
+                         'sense2vec': s2v.similarity(['laugh' + '|VERB'], ['cry' + '|VERB']),
+                         'WordNet': wordnet_similarity('laugh', 'cry', wn.VERB)})
 
 # write_string += ("2similarity('walked', 'talk') " + str(w2v.similarity('walked', 'talk')))
 # write_string += ("2similarity('walked', 'slept') " + str(w2v.similarity('walked', 'slept')))
@@ -114,7 +143,7 @@ fieldnames = ['Noun to Noun', 'word2vec', 'sense2vec', 'WordNet']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
 results_writer.writeheader()
-results_writer.writerow({'Noun to Noun': 'laptop-music',
+results_writer.writerow({'Noun to Noun': 'laptop - music',
                          'word2vec': w2v.similarity('laptop', 'music'),
                          'sense2vec': s2v.similarity(['laptop' + '|NOUN'], ['music' + '|NOUN']),
                          'WordNet': wordnet_similarity('laptop', 'music', wn.NOUN)})
@@ -122,17 +151,34 @@ results_writer.writerow({'Noun to Noun': '',
                          'word2vec': '',
                          'sense2vec': '',
                          'WordNet': ''})
+
 ########################################################################################################################
 fieldnames = ['Preposition to Preposition', 'word2vec', 'sense2vec']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
 results_writer.writeheader()
-results_writer.writerow({'Preposition to Preposition': 'in-of',
-                         'word2vec': w2v.similarity('in', 'of'),
-                         'sense2vec': s2v.similarity(['in' + '|ADP'], ['of' + '|ADP'])})
-results_writer.writerow({'Preposition to Preposition': '',
-                         'word2vec': '',
-                         'sense2vec': ''})
+results_writer.writerow({'Preposition to Preposition': 'above - below',
+                         'word2vec': w2v.similarity('above', 'below'),
+                         'sense2vec': s2v.similarity(['above' + '|ADP'], ['below' + '|ADP'])})
+results_writer.writerow({'Preposition to Preposition': 'inside - outside',
+                         'word2vec': w2v.similarity('inside', 'outside'),
+                         'sense2vec': s2v.similarity(['inside' + '|ADP'], ['outside' + '|ADP'])})
+results_writer.writerow({'Preposition to Preposition': 'with - without',
+                         'word2vec': w2v.similarity('above', 'without'),
+                         'sense2vec': s2v.similarity(['above' + '|ADP'], ['without' + '|ADP'])})
+results_writer.writerow({'Preposition to Preposition': 'up - down',
+                         'word2vec': w2v.similarity('up', 'down'),
+                         'sense2vec': s2v.similarity(['up' + '|ADP'], ['down' + '|ADP'])})
+results_writer.writerow({'Preposition to Preposition': 'before - after',
+                         'word2vec': w2v.similarity('before', 'after'),
+                         'sense2vec': s2v.similarity(['before' + '|ADP'], ['after' + '|ADP'])})
+# results_writer.writerow({'Preposition to Preposition': 'far - close',
+#                          'word2vec': w2v.similarity('far', 'close'),
+#                          'sense2vec': s2v.similarity(['far' + '|ADP'], ['close' + '|ADP'])})
+results_writer.writerow({'Preposition to Preposition': 'against - for',
+                         'word2vec': w2v.similarity('against', 'for'),
+                         'sense2vec': s2v.similarity(['against' + '|ADP'], ['for' + '|ADP'])})
+
 ########################################################################################################################
 
 # write_string += "Logical entailment"
