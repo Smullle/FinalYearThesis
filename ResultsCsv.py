@@ -23,6 +23,7 @@ def sense_vec_query(verb, n=6):
     word_list = s2v.most_similar(query, n=n)
     ans = []
     for word in word_list:
+        word = str(word)
         if "_" or "-" or "/" or "&" not in word:
             ans.append(word)
     return ans
