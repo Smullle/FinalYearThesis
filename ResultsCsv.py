@@ -66,10 +66,30 @@ results_writer.writerow({'Future-Past': 'run - ran',
                          'word2vec': w2v.similarity('run', 'ran'),
                          'sense2vec': s2v.similarity(['run' + '|VERB'], ['ran' + '|VERB']),
                          'WordNet': wordnet_similarity('run', 'ran', wn.VERB)})
-results_writer.writerow({'Future-Past': '',
-                         'word2vec': '',
-                         'sense2vec': '',
-                         'WordNet': ''})
+results_writer.writerow({'Future-Past': 'talk - talked',
+                         'word2vec': w2v.similarity('talk', 'talked'),
+                         'sense2vec': s2v.similarity(['talk' + '|VERB'], ['talked' + '|VERB']),
+                         'WordNet': wordnet_similarity('talk', 'talked', wn.VERB)})
+results_writer.writerow({'Future-Past': 'see - seen',
+                         'word2vec': w2v.similarity('see', 'seen'),
+                         'sense2vec': s2v.similarity(['see' + '|VERB'], ['seen' + '|VERB']),
+                         'WordNet': wordnet_similarity('see', 'seen', wn.VERB)})
+results_writer.writerow({'Future-Past': 'have - had',
+                         'word2vec': w2v.similarity('have', 'had'),
+                         'sense2vec': s2v.similarity(['have' + '|VERB'], ['had' + '|VERB']),
+                         'WordNet': wordnet_similarity('have', 'had', wn.VERB)})
+results_writer.writerow({'Future-Past': 'hold - held',
+                         'word2vec': w2v.similarity('hold', 'held'),
+                         'sense2vec': s2v.similarity(['hold' + '|VERB'], ['held' + '|VERB']),
+                         'WordNet': wordnet_similarity('hold', 'held', wn.VERB)})
+results_writer.writerow({'Future-Past': 'say - said',
+                         'word2vec': w2v.similarity('say', 'said'),
+                         'sense2vec': s2v.similarity(['say' + '|VERB'], ['said' + '|VERB']),
+                         'WordNet': wordnet_similarity('say', 'said', wn.VERB)})
+results_writer.writerow({'Future-Past': 'lose - lost',
+                         'word2vec': w2v.similarity('lose', 'lost'),
+                         'sense2vec': s2v.similarity(['lose' + '|VERB'], ['lost' + '|VERB']),
+                         'WordNet': wordnet_similarity('lose', 'lost', wn.VERB)})
 
 print("Future-Past Complete")
 ########################################################################################################################
@@ -93,24 +113,33 @@ results_writer.writerow({'Most Similar': '',
 
 print("Most Similar Complete")
 ########################################################################################################################
-fieldnames = ['Oddballs', 'word2vec', 'sense2vec-VERB', 'sense2vec-NOUN']
+fieldnames = ['Collisions', 'word2vec', 'sense2vec-VERB', 'sense2vec-NOUN']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
 results_writer.writeheader()
-results_writer.writerow({'Oddballs': 'sleep',
-                         'word2vec': word_vec_query("sleep", topn=6),
-                         'sense2vec-VERB': sense_vec_query("sleep" + '|VERB'),
-                         'sense2vec-NOUN': sense_vec_query("sleep" + '|NOUN')})
-results_writer.writerow({'Oddballs': 'play',
+results_writer.writerow({'Collisions': 'damage',
+                         'word2vec': word_vec_query("damage", topn=6),
+                         'sense2vec-VERB': sense_vec_query("damage" + '|VERB'),
+                         'sense2vec-NOUN': sense_vec_query("damage" + '|NOUN')})
+results_writer.writerow({'Collisions': 'play',
                          'word2vec': word_vec_query("play", topn=6),
                          'sense2vec-VERB': sense_vec_query("play" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("play" + '|NOUN')})
-results_writer.writerow({'Oddballs': 'work',
+results_writer.writerow({'Collisions': 'work',
                          'word2vec': word_vec_query("work", topn=6),
                          'sense2vec-VERB': sense_vec_query("work" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("work" + '|NOUN')})
+results_writer.writerow({'Collisions': 'sink',
+                         'word2vec': word_vec_query("sink ", topn=6),
+                         'sense2vec-VERB': sense_vec_query("sink" + '|VERB'),
+                         'sense2vec-NOUN': sense_vec_query("sink" + '|NOUN')})
+results_writer.writerow({'Collisions': 'fire',
+                         'word2vec': word_vec_query("fire ", topn=6),
+                         'sense2vec-VERB': sense_vec_query("fire" + '|VERB'),
+                         'sense2vec-NOUN': sense_vec_query("fire" + '|NOUN')})
 
-print("Oddballs Complete")
+
+print("Collisions Complete")
 ########################################################################################################################
 fieldnames = ['Verb to Verb', 'word2vec', 'sense2vec', 'WordNet']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
@@ -167,10 +196,26 @@ results_writer.writerow({'Noun to Noun': 'laptop - music',
                          'word2vec': w2v.similarity('laptop', 'music'),
                          'sense2vec': s2v.similarity(['laptop' + '|NOUN'], ['music' + '|NOUN']),
                          'WordNet': wordnet_similarity('laptop', 'music', wn.NOUN)})
-results_writer.writerow({'Noun to Noun': '',
-                         'word2vec': '',
-                         'sense2vec': '',
-                         'WordNet': ''})
+results_writer.writerow({'Noun to Noun': 'car - drive',
+                         'word2vec': w2v.similarity('car', 'drive'),
+                         'sense2vec': s2v.similarity(['car' + '|NOUN'], ['drive' + '|NOUN']),
+                         'WordNet': wordnet_similarity('car', 'drive', wn.NOUN)})
+results_writer.writerow({'Noun to Noun': 'window - house',
+                         'word2vec': w2v.similarity('window', 'house'),
+                         'sense2vec': s2v.similarity(['window' + '|NOUN'], ['house' + '|NOUN']),
+                         'WordNet': wordnet_similarity('window', 'house', wn.NOUN)})
+results_writer.writerow({'Noun to Noun': 'actor - play',
+                         'word2vec': w2v.similarity('actor', 'play'),
+                         'sense2vec': s2v.similarity(['actor' + '|NOUN'], ['play' + '|NOUN']),
+                         'WordNet': wordnet_similarity('actor', 'play', wn.NOUN)})
+results_writer.writerow({'Noun to Noun': 'fire - water',
+                         'word2vec': w2v.similarity('fire', 'water'),
+                         'sense2vec': s2v.similarity(['fire' + '|NOUN'], ['water' + '|NOUN']),
+                         'WordNet': wordnet_similarity('fire', 'water', wn.NOUN)})
+results_writer.writerow({'Noun to Noun': 'work - pay',
+                         'word2vec': w2v.similarity('work', 'pay'),
+                         'sense2vec': s2v.similarity(['work' + '|NOUN'], ['pay' + '|NOUN']),
+                         'WordNet': wordnet_similarity('work', 'pay', wn.NOUN)})
 
 print("Noun to Noun Complete")
 ########################################################################################################################
