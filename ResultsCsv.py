@@ -42,9 +42,12 @@ s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec/wiki"
 results_file = "/home/shanesmullen/train/vmshare/results/results.csv"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
+print("Word2Vec Model Loaded")
 s2v = Sense2Vec().from_disk(s2v_model)
+print("Sense2Vec Model Loaded")
 
 results = open(results_file, "w", newline='')
+print("Results File Created at:", results_file)
 
 ########################################################################################################################
 fieldnames = ['Future-Past', 'word2vec', 'sense2vec', 'WordNet']
@@ -59,6 +62,8 @@ results_writer.writerow({'Future-Past': '',
                          'word2vec': '',
                          'sense2vec': '',
                          'WordNet': ''})
+
+print("Future-Past Complete")
 ########################################################################################################################
 fieldnames = ['Most Similar', 'word2vec', 'sense2vec']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
@@ -78,6 +83,7 @@ results_writer.writerow({'Most Similar': '',
 # write_string += ("Most similar 'talked' " + str(word_vec_query("talked")))
 # write_string += ("Most similar 'slept' " + str(word_vec_query("slept")))
 
+print("Most Similar Complete")
 ########################################################################################################################
 fieldnames = ['Oddballs', 'word2vec', 'sense2vec-VERB', 'sense2vec-NOUN']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
@@ -96,6 +102,7 @@ results_writer.writerow({'Oddballs': 'work',
                          'sense2vec-VERB': sense_vec_query("work" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("work" + '|NOUN')})
 
+print("Oddballs Complete")
 ########################################################################################################################
 fieldnames = ['Verb to Verb', 'word2vec', 'sense2vec', 'WordNet']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
@@ -142,6 +149,7 @@ results_writer.writerow({'Verb to Verb': 'laugh - cry',
 # write_string += ("2model2.similarity('run', 'hatter') " + str(w2v.similarity('run', 'hatter')))
 # write_string += ("2model2.similarity('run', 'think') " + str(w2v.similarity('run', 'think')))
 
+print("Verb to Verb Complete")
 ########################################################################################################################
 fieldnames = ['Noun to Noun', 'word2vec', 'sense2vec', 'WordNet']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
@@ -156,6 +164,7 @@ results_writer.writerow({'Noun to Noun': '',
                          'sense2vec': '',
                          'WordNet': ''})
 
+print("Noun to Noun Complete")
 ########################################################################################################################
 fieldnames = ['Preposition to Preposition', 'word2vec', 'sense2vec']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
@@ -183,6 +192,7 @@ results_writer.writerow({'Preposition to Preposition': 'against - for',
                          'word2vec': w2v.similarity('against', 'for'),
                          'sense2vec': s2v.similarity(['against' + '|ADP'], ['for' + '|ADP'])})
 
+print("Preposition to Preposition Complete")
 ########################################################################################################################
 
 # write_string += "Logical entailment"
