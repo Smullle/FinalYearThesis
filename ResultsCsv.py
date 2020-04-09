@@ -28,7 +28,7 @@ def sense_vec_query(verb, n=50):
     ans = []
     for word in word_list:
         word = str(word)
-        if "_" or "/" or "&" or "-" not in word[1:].split('|')[0][:-1]:
+        if "_" and "/" and "&" and "-" not in word[1:].split('|')[0][:-1]:
             ans.append(word)
     return ans
 
