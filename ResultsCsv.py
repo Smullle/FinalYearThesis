@@ -117,24 +117,24 @@ fieldnames = ['Collisions', 'word2vec', 'sense2vec-VERB', 'sense2vec-NOUN']
 results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 
 results_writer.writeheader()
-results_writer.writerow({'Collisions': 'damage',
-                         'word2vec': word_vec_query("damage", topn=6),
-                         'sense2vec-VERB': sense_vec_query("damage" + '|VERB'),
-                         'sense2vec-NOUN': sense_vec_query("damage" + '|NOUN')})
+results_writer.writerow({'Collisions': 'water',
+                         'word2vec': word_vec_query("water", topn=10),
+                         'sense2vec-VERB': sense_vec_query("water" + '|VERB'),
+                         'sense2vec-NOUN': sense_vec_query("water" + '|NOUN')})
 results_writer.writerow({'Collisions': 'play',
-                         'word2vec': word_vec_query("play", topn=6),
+                         'word2vec': word_vec_query("play", topn=10),
                          'sense2vec-VERB': sense_vec_query("play" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("play" + '|NOUN')})
 results_writer.writerow({'Collisions': 'work',
-                         'word2vec': word_vec_query("work", topn=6),
+                         'word2vec': word_vec_query("work", topn=10),
                          'sense2vec-VERB': sense_vec_query("work" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("work" + '|NOUN')})
 results_writer.writerow({'Collisions': 'sink',
-                         'word2vec': word_vec_query("sink", topn=6),
+                         'word2vec': word_vec_query("sink", topn=10),
                          'sense2vec-VERB': sense_vec_query("sink" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("sink" + '|NOUN')})
 results_writer.writerow({'Collisions': 'fire',
-                         'word2vec': word_vec_query("fire", topn=6),
+                         'word2vec': word_vec_query("fire", topn=10),
                          'sense2vec-VERB': sense_vec_query("fire" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("fire" + '|NOUN')})
 
