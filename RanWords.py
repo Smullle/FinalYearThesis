@@ -4,6 +4,9 @@ import random
 from nltk.corpus import wordnet as wn
 import re
 import csv
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 w2v_model = "/home/shanesmullen/train/vmshare/models/word2vec/word2vec.model"
 s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec"

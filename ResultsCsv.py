@@ -3,6 +3,9 @@ import re
 import gensim
 from sense2vec import Sense2Vec
 from nltk.corpus import wordnet as wn
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def word_vec_query(verb, positive=None, negative=None, topn=1):
