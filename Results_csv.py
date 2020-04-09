@@ -101,31 +101,31 @@ results_writer.writerow({'Verb to Verb': 'lose - win',
                          'word2vec': w2v.similarity('lose', 'win'),
                          'sense2vec': s2v.similarity(['lose' + '|VERB'], ['win' + '|VERB']),
                          'WordNet': wordnet_similarity('lose', 'win', wn.VERB)})
-results_writer.writerow({'Verb to Verb': 'shout – whisper',
+results_writer.writerow({'Verb to Verb': 'shout - whisper',
                          'word2vec': w2v.similarity('shout', 'whisper'),
                          'sense2vec': s2v.similarity(['shout' + '|VERB'], ['whisper' + '|VERB']),
                          'WordNet': wordnet_similarity('shout', 'whisper', wn.VERB)})
-results_writer.writerow({'Verb to Verb': 'float – sink',
+results_writer.writerow({'Verb to Verb': 'float - sink',
                          'word2vec': w2v.similarity('float', 'sink'),
                          'sense2vec': s2v.similarity(['float' + '|VERB'], ['sink' + '|VERB']),
                          'WordNet': wordnet_similarity('float', 'sink', wn.VERB)})
-results_writer.writerow({'Verb to Verb': 'borrow – lend',
+results_writer.writerow({'Verb to Verb': 'borrow - lend',
                          'word2vec': w2v.similarity('borrow', 'lend'),
                          'sense2vec': s2v.similarity(['borrow' + '|VERB'], ['lend' + '|VERB']),
                          'WordNet': wordnet_similarity('borrow', 'lend', wn.VERB)})
-results_writer.writerow({'Verb to Verb': 'build – destroy',
+results_writer.writerow({'Verb to Verb': 'build - destroy',
                          'word2vec': w2v.similarity('build', 'destroy'),
                          'sense2vec': s2v.similarity(['build' + '|VERB'], ['destroy' + '|VERB']),
                          'WordNet': wordnet_similarity('build', 'destroy', wn.VERB)})
-results_writer.writerow({'Verb to Verb': 'punish – reward',
+results_writer.writerow({'Verb to Verb': 'punish - reward',
                          'word2vec': w2v.similarity('punish', 'reward'),
                          'sense2vec': s2v.similarity(['punish' + '|VERB'], ['reward' + '|VERB']),
                          'WordNet': wordnet_similarity('punish', 'reward', wn.VERB)})
-results_writer.writerow({'Verb to Verb': 'show – hide',
+results_writer.writerow({'Verb to Verb': 'show - hide',
                          'word2vec': w2v.similarity('show', 'hide'),
                          'sense2vec': s2v.similarity(['show' + '|VERB'], ['hide' + '|VERB']),
                          'WordNet': wordnet_similarity('show', 'hide', wn.VERB)})
-results_writer.writerow({'Verb to Verb': 'laugh – cry',
+results_writer.writerow({'Verb to Verb': 'laugh - cry',
                          'word2vec': w2v.similarity('laugh', 'cry'),
                          'sense2vec': s2v.similarity(['laugh' + '|VERB'], ['cry' + '|VERB']),
                          'WordNet': wordnet_similarity('laugh', 'cry', wn.VERB)})
