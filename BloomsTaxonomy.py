@@ -23,7 +23,6 @@ results.write("Sense2Vec\n")
 for cat in categories:
     for word in cat:
         comp_words = [w for w in cat if w != word]
-        print(word.lower(), ":", comp.lower())
         for comp in comp_words:
             results.write(str(s2v.similarity([word.lower() + '|VERB'], [comp.lower() + '|VERB'])) + ',')
     results.write("\n")
