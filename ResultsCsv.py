@@ -19,7 +19,7 @@ def word_vec_query(verb, positive=None, negative=None, topn=1):
     return w2v.most_similar(verb, topn=topn)
 
 
-def sense_vec_query(verb, n=100):
+def sense_vec_query(verb, n=1000):
     query = verb
     assert query in s2v
     # vector = s2v[query]
@@ -28,8 +28,8 @@ def sense_vec_query(verb, n=100):
     ans = []
     for word in word_list:
         word = str(word)
-        print(word)
-        print(word[2:].split('|')[0])
+        # print(word)
+        # print(word[2:].split('|')[0])
         if word[1:].split('|')[0][:-1] in words.words():
             ans.append(word)
     return ans
