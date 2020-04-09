@@ -15,7 +15,7 @@ def word_vec_query(verb, positive=None, negative=None, topn=1):
     return w2v.most_similar(verb, topn=topn)
 
 
-def sense_vec_query(verb, n=3):
+def sense_vec_query(verb, n=6):
     query = verb
     assert query in s2v
     # vector = s2v[query]
