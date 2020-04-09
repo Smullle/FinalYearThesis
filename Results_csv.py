@@ -80,15 +80,15 @@ results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMA
 
 results_writer.writeheader()
 results_writer.writerow({'Oddballs': 'sleep',
-                         'word2vec': word_vec_query("sleep", topn=3),
+                         'word2vec': word_vec_query("sleep", topn=6),
                          'sense2vec-VERB': sense_vec_query("sleep" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("sleep" + '|NOUN')})
 results_writer.writerow({'Oddballs': 'play',
-                         'word2vec': word_vec_query("play", topn=3),
+                         'word2vec': word_vec_query("play", topn=6),
                          'sense2vec-VERB': sense_vec_query("play" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("play" + '|NOUN')})
 results_writer.writerow({'Oddballs': 'work',
-                         'word2vec': word_vec_query("work", topn=3),
+                         'word2vec': word_vec_query("work", topn=6),
                          'sense2vec-VERB': sense_vec_query("work" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("work" + '|NOUN')})
 
