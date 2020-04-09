@@ -3,6 +3,7 @@ import re
 import gensim
 from sense2vec import Sense2Vec
 from nltk.corpus import wordnet as wn
+from nltk.corpus import words
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -27,7 +28,7 @@ def sense_vec_query(verb, n=30):
     ans = []
     for word in word_list:
         word = str(word)
-        if "_" and "-" and "/" and "&" not in word:
+        if word.split('|')[0] in words.words():
             ans.append(word)
     return ans
 
