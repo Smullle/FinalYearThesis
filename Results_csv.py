@@ -21,7 +21,11 @@ def sense_vec_query(verb, n=6):
     # vector = s2v[query]
     # freq = s2v.get_freq(query)
     return s2v.most_similar(query, n=n)
-
+    # ans = []
+    # for word in word_list:
+    #     if "_" or "-" or "/" or "&" not in word:
+    #         ans.append(word)
+    # return ans
 
 def wordnet_similarity(word1, word2, pos):
     word1 = wn.synsets(word1, pos=pos)[0]
@@ -34,7 +38,7 @@ def wordnet_similarity(word1, word2, pos):
 
 
 w2v_model = "/home/shanesmullen/train/vmshare/models/word2vec/word2vec.model"
-s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec"
+s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec/wiki"
 results_file = "/home/shanesmullen/train/vmshare/results/results.csv"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
