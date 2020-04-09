@@ -1,9 +1,9 @@
 import csv
-import re
 import gensim
 from sense2vec import Sense2Vec
 from nltk.corpus import wordnet as wn
 import re
+from nltk.corpus import words
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -19,7 +19,7 @@ def word_vec_query(verb, positive=None, negative=None, topn=1):
     return w2v.most_similar(verb, topn=topn)
 
 
-def sense_vec_query(verb, n=50):
+def sense_vec_query(verb, n=500):
     query = verb
     assert query in s2v
     # vector = s2v[query]
@@ -28,9 +28,9 @@ def sense_vec_query(verb, n=50):
     ans = []
     for word in word_list:
         word = str(word)
-        print(word[2:].split('|')[0][:-1])
-        z = re.match("^[a-zA-Z]+$", word[2:].split('|')[0][:-1])
-        if z:
+        # print(word[2:].split('|')[0])
+        z = re.match("^[a-zA-Z]+$", word[2:].split('|')[0])
+        if z and word[2:].split('|')[0] in words.words():
             ans.append(word)
     return ans
 
