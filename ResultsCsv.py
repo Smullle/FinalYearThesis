@@ -28,6 +28,7 @@ def sense_vec_query(verb, n=10):
     ans = []
     for word in word_list:
         word = str(word)
+        print(word)
         print(word[1:].split('|')[0][:-1])
         if word[1:].split('|')[0][:-1] in words.words():
             ans.append(word)
