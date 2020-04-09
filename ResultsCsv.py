@@ -28,9 +28,9 @@ def sense_vec_query(verb, n=500):
     ans = []
     for word in word_list:
         word = str(word)
-        # print(word[2:].split('|')[0])
-        z = re.match("^[a-zA-Z]+$", word[2:].split('|')[0])
-        if z and word[2:].split('|')[0] in words.words():
+        word = word[2:].split('|')[0]
+        z = re.match("^[a-zA-Z]+$", word)
+        if z and word in words.words():
             ans.append(word)
     return ans
 
