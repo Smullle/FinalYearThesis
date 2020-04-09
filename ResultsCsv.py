@@ -44,7 +44,7 @@ def wordnet_similarity(word1, word2, pos):
 
 
 w2v_model = "/home/shanesmullen/train/vmshare/models/word2vec/word2vec.model"
-s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec"
+s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec/wiki"
 results_file = "/home/shanesmullen/train/vmshare/results/results.csv"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
