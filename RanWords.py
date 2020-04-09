@@ -14,7 +14,9 @@ verb_file = "/home/shanesmullen/train/vmshare/results/verblist.txt"
 noun_file = "/home/shanesmullen/train/vmshare/results/nounlist.txt"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
+print("Word2Vec Model Loaded")
 s2v = Sense2Vec().from_disk(s2v_model)
+print("Sense2Vec Model Loaded")
 
 f = open('~/wordlists/verblist.txt', 'r')
 verbs = f.read().splitlines()

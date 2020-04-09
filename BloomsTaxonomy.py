@@ -17,9 +17,13 @@ create = ["Construct", "Compose", "Create", "Design", "Propose"]
 
 categories = [knowledge, understanding, application, analysis, evaluation, create]
 
-results = open(r_data, "w")
-
+w2v = gensim.models.Word2Vec.load(w2v_model)
+print("Word2Vec Model Loaded")
 s2v = Sense2Vec().from_disk(s2v_model)
+print("Sense2Vec Model Loaded")
+
+results = open(r_data, "w")
+print("Results File Created at:", r_data)
 
 results.write("Sense2Vec\n")
 for cat in categories:
@@ -28,8 +32,6 @@ for cat in categories:
         for comp in comp_words:
             results.write(str(s2v.similarity([word.lower() + '|VERB'], [comp.lower() + '|VERB'])) + ',')
     results.write("\n")
-
-w2v = gensim.models.Word2Vec.load(w2v_model)
 
 results.write("Word2Vec\n")
 for cat in categories:

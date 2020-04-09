@@ -134,7 +134,7 @@ results_writer.writerow({'Collisions': 'sink',
                          'sense2vec-VERB': sense_vec_query("sink" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("sink" + '|NOUN')})
 results_writer.writerow({'Collisions': 'fire',
-                         'word2vec': word_vec_query("fire ", topn=6),
+                         'word2vec': word_vec_query("fire", topn=6),
                          'sense2vec-VERB': sense_vec_query("fire" + '|VERB'),
                          'sense2vec-NOUN': sense_vec_query("fire" + '|NOUN')})
 
