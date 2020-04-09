@@ -61,7 +61,7 @@ results_writer = csv.DictWriter(results, delimiter=',', quoting=csv.QUOTE_MINIMA
 
 results_writer.writeheader()
 results_writer.writerow({'Most Similar': 'run',
-                         'word2vec': word_vec_query("run", topn=3),
+                         'word2vec': word_vec_query("run", topn=6),
                          'sense2vec': sense_vec_query("run" + '|VERB')})
 results_writer.writerow({'Most Similar': '',
                          'word2vec': '',
