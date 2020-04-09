@@ -16,8 +16,13 @@ def word_vec_query(verb, positive=None, negative=None, topn=1):
         return w2v.most_similar(positive, topn=topn)
     elif verb is None:
         return w2v.most_similar(positive, negative, topn=topn)
-    return w2v.most_similar(verb, topn=topn)
-
+    word_list = w2v.most_similar(verb, topn=topn)
+    ans = []
+    for word in word_list:
+        word = str(word)
+        word = word[2:].split(',')[0]
+        ans.append(word)
+    return ans
 
 def sense_vec_query(verb, n=500):
     query = verb
