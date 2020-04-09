@@ -27,9 +27,10 @@ def sense_vec_query(verb, n=6):
     ans = []
     for word in word_list:
         word = str(word)
-        if "_" or "-" or "/" or "&" not in word:
+        if "_" and "-" and "/" and "&" not in word:
             ans.append(word)
     return ans
+
 
 def wordnet_similarity(word1, word2, pos):
     word1 = wn.synsets(word1, pos=pos)[0]
