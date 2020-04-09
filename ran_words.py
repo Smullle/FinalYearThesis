@@ -5,8 +5,8 @@ from nltk.corpus import wordnet as wn
 import re
 import csv
 
-w2v_model = "~/train/vmshare/models/word2vec/word2vec.model"
-s2v_model = "~/train/vmshare/models/sense2vec"
+w2v_model = "/home/shanesmullen/train/vmshare/models/word2vec/word2vec.model"
+s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec"
 verb_file = "/home/shanesmullen/train/vmshare/results/verblist.txt"
 noun_file = "/home/shanesmullen/train/vmshare/results/nounlist.txt"
 
