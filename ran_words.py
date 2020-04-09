@@ -5,16 +5,18 @@ from nltk.corpus import wordnet as wn
 import re
 import csv
 
-w2v_model = "E:\\WikiData\\Trained\\word2vec\\10GB\\word2vec.model"
-s2v_model = "E:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
+w2v_model = "~/train/vmshare/models/word2vec/word2vec.model"
+s2v_model = "~/train/vmshare/models/sense2vec"
+verb_file = "/home/shanesmullen/train/vmshare/results/verblist.txt"
+noun_file = "/home/shanesmullen/train/vmshare/results/nounlist.txt"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
 s2v = Sense2Vec().from_disk(s2v_model)
 
-f = open('E:\\wordlists\\ran_verbs.txt', 'r')
+f = open('~/wordlists/ran_verbs.txt', 'r')
 verbs = f.read().splitlines()
 f.close()
-f = open('E:\\wordlists\\nounlist.txt', 'r')
+f = open('~/wordlists/nounlist.txt', 'r')
 nouns = f.read().splitlines()
 f.close()
 
@@ -40,9 +42,11 @@ def wordnet_first_last(word, pos):
         return [100, 100, 100]
 
 
-results_s2v_verb = open("E:\\Results\\s2v_ran_verbs_results.csv", "w", newline='')
+verb_results = open(verb_file, "w", newline='')
+noun_results = open(noun_file, "w", newline='')
+
 fieldnames = ['verb', 'first word in first synset', 'last word in first synset', 'last word in last synset']
-results_writer = csv.DictWriter(results_s2v_verb, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
+results_writer = csv.DictWriter(verb_results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 results_writer.writeheader()
 for i in range(1000):
     verb = random.choice(verbs)
@@ -64,11 +68,9 @@ for i in range(1000):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
 
-results_s2v_verb.close()
 
-results_s2v_noun = open("E:\\Results\\ran_nouns_results.csv", "w", newline='')
 fieldnames = ['noun', 'first word in first synset', 'last word in first synset', 'last word in last synset']
-results_writer = csv.DictWriter(results_s2v_noun, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
+results_writer = csv.DictWriter(noun_results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 results_writer.writeheader()
 for i in range(10000):
     noun = random.choice(nouns)
@@ -90,11 +92,9 @@ for i in range(10000):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
 
-results_s2v_noun.close()
 
-results_w2v_verbs = open("E:\\Results\\ran_w2v_verbs_results.csv", "w", newline='')
 fieldnames = ['verb', 'first word in first synset', 'last word in first synset', 'last word in last synset']
-results_writer = csv.DictWriter(results_w2v_verbs, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
+results_writer = csv.DictWriter(verb_results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 results_writer.writeheader()
 for i in range(1000):
     verb = random.choice(verbs)
@@ -116,11 +116,9 @@ for i in range(1000):
         # ignore phrasal verbs, only single verbs accepted by w2v
         continue
 
-results_w2v_verbs.close()
 
-results_w2v_noun = open("E:\\Results\\ran_w2v_nouns_results.csv", "w", newline='')
 fieldnames = ['noun', 'first word in first synset', 'last word in first synset', 'last word in last synset']
-results_writer = csv.DictWriter(results_w2v_noun, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
+results_writer = csv.DictWriter(noun_results, delimiter=',', quoting=csv.QUOTE_MINIMAL, fieldnames=fieldnames)
 results_writer.writeheader()
 for i in range(10000):
     noun = random.choice(nouns)
@@ -142,7 +140,8 @@ for i in range(10000):
         # ignore phrasal verbs, only single verbs accepted by w2v
         continue
 
-results_w2v_noun.close()
+verb_results.close()
+noun_results.close()
 
 # sanity check
 # for i in range(1):

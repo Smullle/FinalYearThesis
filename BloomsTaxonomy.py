@@ -2,9 +2,9 @@ import gensim
 from sense2vec import Sense2Vec
 
 
-w2v_model = "E:\\WikiData\\Trained\\word2vec\\5GB\\word2vec.model"
-s2v_model = "E:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
-r_data = "E:\\Results\\bloom_r.txt"
+w2v_model = "~/train/vmshare/models/word2vec/word2vec.model"
+s2v_model = "~/train/vmshare/models/sense2vec"
+r_data = "/home/shanesmullen/train/vmshare/results/bloom_r.txt"
 
 knowledge = ["List", "Name", "Identify", "Reproduce"]
 understanding = ["Describe", "Explain", "Classify", "Discuss"]

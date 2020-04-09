@@ -33,14 +33,14 @@ def wordnet_similarity(word1, word2, pos):
     return word1.path_similarity(word2)
 
 
-results = open("E:\\Results\\results.csv", "w", newline='')
-
-
-w2v_model = "E:\\WikiData\\Trained\\word2vec\\5GB\\word2vec.model"
-s2v_model = "E:\\WikiData\\Trained\\sense2vec\\RedditVecs\\sense2vec-vectors"
+w2v_model = "~/train/vmshare/models/word2vec/word2vec.model"
+s2v_model = "~/train/vmshare/models/sense2vec"
+results_file = "/home/shanesmullen/train/vmshare/results/results.csv"
 
 w2v = gensim.models.Word2Vec.load(w2v_model)
 s2v = Sense2Vec().from_disk(s2v_model)
+
+results = open(results_file, "w", newline='')
 
 ########################################################################################################################
 fieldnames = ['Future-Past', 'word2vec', 'sense2vec', 'WordNet']
