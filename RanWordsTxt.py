@@ -65,9 +65,9 @@ for i in range(1000):
         last_first = s2v.similarity([verb + '|VERB'], [wordnet_verbs[1] + '|VERB'])
         last_last = s2v.similarity([verb + '|VERB'], [wordnet_verbs[1] + '|VERB'])
         if first_first <= 1 and last_first <= 1 and last_last <= 1:
-            fist_first_list.append(str(first_first))
-            last_first_list.append(str(last_first))
-            last_last_list.append(str(last_last))
+            fist_first_list.append(str(first_first) + ",")
+            last_first_list.append(str(last_first) + ",")
+            last_last_list.append(str(last_last) + ",")
     except (TypeError, KeyError):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
@@ -100,9 +100,9 @@ for i in range(10000):
         last_first = s2v.similarity([noun + '|NOUN'], [wordnet_verbs[1] + '|NOUN'])
         last_last = s2v.similarity([noun + '|NOUN'], [wordnet_verbs[1] + '|NOUN'])
         if first_first <= 1 and last_first <= 1 and last_last <= 1:
-            fist_first_list.append(str(first_first))
-            last_first_list.append(str(last_first))
-            last_last_list.append(str(last_last))
+            fist_first_list.append(str(first_first) + ",")
+            last_first_list.append(str(last_first) + ",")
+            last_last_list.append(str(last_last) + ",")
     except (TypeError, KeyError):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
@@ -135,9 +135,9 @@ for i in range(1000):
         last_first = w2v.similarity(verb, wordnet_verbs[1])
         last_last = w2v.similarity(verb, wordnet_verbs[2])
         if first_first <= 1 and last_first <= 1 and last_last <= 1:
-            fist_first_list.append(str(first_first))
-            last_first_list.append(str(last_first))
-            last_last_list.append(str(last_last))
+            fist_first_list.append(str(first_first) + ",")
+            last_first_list.append(str(last_first) + ",")
+            last_last_list.append(str(last_last) + ",")
     except (TypeError, KeyError):
         # ignore phrasal verbs, only single verbs accepted by w2v
         continue
@@ -170,9 +170,9 @@ for i in range(10000):
         last_first = w2v.similarity(noun, wordnet_verbs[1])
         last_last = w2v.similarity(noun, wordnet_verbs[2])
         if first_first <= 1 and last_first <= 1 and last_last <= 1:
-            fist_first_list.append(str(first_first))
-            last_first_list.append(str(last_first))
-            last_last_list.append(str(last_last))
+            fist_first_list.append(str(first_first) + ",")
+            last_first_list.append(str(last_first) + ",")
+            last_last_list.append(str(last_last) + ",")
     except (TypeError, KeyError):
         # ignore phrasal verbs, only single verbs accepted by w2v
         continue
