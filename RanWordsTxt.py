@@ -74,11 +74,11 @@ for i in range(1000):
 
 verb_results.write("Sense2Vec")
 verb_results.write('first word in first synset')
-verb_results.write(fist_first_list)
+verb_results.writelines(fist_first_list)
 verb_results.write('last word in first synset')
-verb_results.write(last_first_list)
+verb_results.writelines(last_first_list)
 verb_results.write('last word in last synset')
-verb_results.write(last_last_list)
+verb_results.writelines(last_last_list)
 
 fist_first_list = []
 last_first_list = []
@@ -105,11 +105,11 @@ for i in range(10000):
 
 verb_results.write("Sense2Vec")
 noun_results.write('first word in first synset')
-noun_results.write(fist_first_list)
+noun_results.writelines(fist_first_list)
 noun_results.write('last word in first synset')
-noun_results.write(last_first_list)
+noun_results.writelines(last_first_list)
 noun_results.write('last word in last synset')
-noun_results.write(last_last_list)
+noun_results.writelines(last_last_list)
 
 fist_first_list = []
 last_first_list = []
@@ -136,11 +136,11 @@ for i in range(1000):
 
 verb_results.write("Word2Vec")
 verb_results.write('first word in first synset')
-verb_results.write(fist_first_list)
+verb_results.writelines(fist_first_list)
 verb_results.write('last word in first synset')
-verb_results.write(last_first_list)
+verb_results.writelines(last_first_list)
 verb_results.write('last word in last synset')
-verb_results.write(last_last_list)
+verb_results.writelines(last_last_list)
 
 fist_first_list = []
 last_first_list = []
@@ -167,11 +167,11 @@ for i in range(10000):
 
 verb_results.write("Word2Vec")
 noun_results.write('first word in first synset')
-noun_results.write(fist_first_list)
+noun_results.writelines(fist_first_list)
 noun_results.write('last word in first synset')
-noun_results.write(last_first_list)
+noun_results.writelines(last_first_list)
 noun_results.write('last word in last synset')
-noun_results.write(last_last_list)
+noun_results.writelines(last_last_list)
 
 verb_results.close()
 noun_results.close()
