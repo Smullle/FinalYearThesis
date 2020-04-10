@@ -17,10 +17,10 @@ print("Word2Vec Model Loaded")
 s2v = Sense2Vec().from_disk(s2v_model)
 print("Sense2Vec Model Loaded")
 
-f = open('~/Sense2Vec/WordLists/verblist.txt', 'r')
+f = open('~/sense2vec/WordLists/verblist.txt', 'r')
 verbs = f.read().splitlines()
 f.close()
-f = open('~/Sense2Vec/WordLists/nounlist.txt', 'r')
+f = open('~/sense2vec/WordLists/nounlist.txt', 'r')
 nouns = f.read().splitlines()
 f.close()
 
