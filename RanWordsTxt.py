@@ -72,13 +72,17 @@ for i in range(1000):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
 
-verb_results.write("Sense2Vec")
-verb_results.write('first word in first synset')
+verb_results.write("Sense2Vec\n")
+verb_results.write('first word in first synset\n')
 verb_results.writelines(fist_first_list)
-verb_results.write('last word in first synset')
+verb_results.write("\n")
+verb_results.write('last word in first synset\n')
 verb_results.writelines(last_first_list)
-verb_results.write('last word in last synset')
+verb_results.write("\n")
+verb_results.write('last word in last synset\n')
 verb_results.writelines(last_last_list)
+verb_results.write("\n")
+verb_results.write("\n")
 
 fist_first_list = []
 last_first_list = []
@@ -103,13 +107,17 @@ for i in range(10000):
         # ignore phrasal verbs, only single verbs accepted by s2v
         continue
 
-verb_results.write("Sense2Vec")
-noun_results.write('first word in first synset')
+noun_results.write("Sense2Vec\n")
+noun_results.write('first word in first synset\n')
 noun_results.writelines(fist_first_list)
-noun_results.write('last word in first synset')
+noun_results.write("\n")
+noun_results.write('last word in first synset\n')
 noun_results.writelines(last_first_list)
-noun_results.write('last word in last synset')
+noun_results.write("\n")
+noun_results.write('last word in last synset\n')
 noun_results.writelines(last_last_list)
+noun_results.write("\n")
+noun_results.write("\n")
 
 fist_first_list = []
 last_first_list = []
@@ -134,13 +142,17 @@ for i in range(1000):
         # ignore phrasal verbs, only single verbs accepted by w2v
         continue
 
-verb_results.write("Word2Vec")
-verb_results.write('first word in first synset')
+verb_results.write("Word2Vec\n")
+verb_results.write('first word in first synset\n')
 verb_results.writelines(fist_first_list)
-verb_results.write('last word in first synset')
+verb_results.write("\n")
+verb_results.write('last word in first synset\n')
 verb_results.writelines(last_first_list)
-verb_results.write('last word in last synset')
+verb_results.write("\n")
+verb_results.write('last word in last synset\n')
 verb_results.writelines(last_last_list)
+verb_results.write("\n")
+verb_results.write("\n")
 
 fist_first_list = []
 last_first_list = []
@@ -165,13 +177,17 @@ for i in range(10000):
         # ignore phrasal verbs, only single verbs accepted by w2v
         continue
 
-verb_results.write("Word2Vec")
-noun_results.write('first word in first synset')
+noun_results.write("Word2Vec\n")
+noun_results.write('first word in first synset\n')
 noun_results.writelines(fist_first_list)
-noun_results.write('last word in first synset')
+noun_results.write("\n")
+noun_results.write('last word in first synset\n')
 noun_results.writelines(last_first_list)
-noun_results.write('last word in last synset')
+noun_results.write("\n")
+noun_results.write('last word in last synset\n')
 noun_results.writelines(last_last_list)
+noun_results.write("\n")
+noun_results.write("\n")
 
 verb_results.close()
 noun_results.close()
