@@ -6,6 +6,9 @@ Chapter 4 results; [BloomsTanonomy.py](../../BloomsTaxonomy.py),
 [ResultsCsv.py](../../ResultsCsv.py) and 
 [RanWordsTxt.py](../../RanWordsTxt.py).
 
+To produce the boxplots in sections 4.6 and 4.7 the following R files were used; [WordnetNoun.r](../../WordnetNoun.r),
+[WordnetVerb.r](../../WordnetVerb.r) and [bloom.r](../../bloom.r)
+
 ## Installation of Required Libraries
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.txt.
