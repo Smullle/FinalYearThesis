@@ -9,6 +9,15 @@ Chapter 4 results; [BloomsTanonomy.py](../../BloomsTaxonomy.py),
 To produce the boxplots in sections 4.6 and 4.7 the following R files were used; [WordnetNoun.r](../../WordnetNoun.r),
 [WordnetVerb.r](../../WordnetVerb.r) and [bloom.r](../../bloom.r)
 
+## Abstract
+Many methods for producing word embeddings have been developed but one project considered the standard, Word2Vec is 
+able to extract context and give the illusion of knowledge when trained on a corpus of text. However it is not without 
+its pitfalls, when investigating Word2Vec's ability to group verbs it does not produce the same level of quality as with
+ noun embeddings. The Sense2Vec project introduces part of speech tagging to the training process allowing for a more 
+ refined level of context to be obtained. When investigating verb embeddings specifically a greater relationship was 
+ found between verb tenses than originally produced by Word2Vec. Also by making a distinction between words that may be 
+ considered a noun or a verb depending on context, a more refined list of similar embeddings is produced.
+
 ## Installation of Required Libraries
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.txt.
