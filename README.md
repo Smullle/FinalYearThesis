@@ -27,8 +27,9 @@ The two words lists; [nounlist.txt](../../WordLists/nounlist.txt) and [verblist.
 required for [RanWordsTxt.py](../../RanWordsTxt.py).
 
 ## LaTeX
-Contains the set of .tex files to construct the pdf and a .bib file containing information for referencing. Images and
-figures used are also located within this directory.
+Contains the set of .tex files to construct the pdf and a [.bib](../../LaTeX/Thesis.bib) file containing information for
+ referencing. [Images](../../LaTeX/images) and [figures](../../LaTeX/images) used are also located within this 
+directory.
 
 ## Acknowledgments
 I’d like to extend my gratitude to my supervisor Dr Diarmuid O'Donoghue, for first introducing the idea and providing 
