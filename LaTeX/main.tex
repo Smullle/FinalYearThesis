@@ -1,0 +1,58 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\graphicspath{{images/}}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{sense2vec}
+\fancyhead[L]{\chaptername~\thechapter}
+\fancyfoot{}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{Shane Smullen}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+\title{
+    {Sense2Vec: Investigating the Advantage of Introducing Part of Speech Tagging When Training Word Embeddings}\\
+    {\large Maynooth University}\\
+    {\includegraphics[scale=0.5]{university}}
+}
+\author{Shane Smullen}
+\date{April 2020}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Many methods for producing word embeddings have been developed but one project considered the standard, Word2Vec is able to extract context and give the illusion of knowledge when trained on a corpus of text. However it is not without its pitfalls, when investigating Word2Vec's ability to group verbs it does not produce the same level of quality as with noun embeddings. The Sense2Vec project introduces part of speech tagging to the training process allowing for a more refined level of context to be obtained. When investigating verb embeddings specifically a greater relationship was found between verb tenses than originally produced by Word2Vec. Also by making a distinction between words that may be considered a noun or a verb depending on context, a more refined list of similar embeddings is produced.
+\end{abstract}
+
+\tableofcontents
+
+\chapter{Introduction and Problem Overview}
+\input{chapters/1introduction}
+
+\chapter{Background}
+\input{chapters/2background}
+
+\chapter{Problem Specification and Solution}
+\input{chapters/3problem}
+
+\chapter{Results}
+\input{chapters/4results}
+
+\chapter{Conclusion}
+\input{chapters/5conclusion}
+
+\bibliography{Thesis.bib} 
+\bibliographystyle{ieeetr}
+
+\chapter*{Acknowledgements}
+\input{chapters/6acknowledgments}
+
+\end{document}
