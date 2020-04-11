@@ -2,7 +2,9 @@
 
 A final year project investigating two methods for training word embeddings; Word2Vec and 
 [Sense2Vec](https://github.com/explosion/sense2vec). Included are the 3 files used to produce the values used within 
-Chapter 4 results; [BloomsTanonomy.py](BloomsTanonomy.py).
+Chapter 4 results; [BloomsTanonomy.py](../blob/master/BloomsTanonomy.py), 
+[ResultsCsv.py](../blob/master/ResultsCsv.py) and 
+[RanWordsTxt.py](../blob/master/RanWordsTxt.py).
 
 ## Installation of Required Libraries
 
