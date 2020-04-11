@@ -22,6 +22,14 @@ pip install requirements.txt
 Download and store a large corpus of Wikipedia text located [here](https://dumps.wikimedia.org/enwiki/) it is 
 recommended to used a corpus which contains at least 1 billion words.
 
+## WordLists
+The two words lists; [nounlist.txt](../../WordLists/nounlist.txt) and [verblist.txt](../../WordLists/verblist.txt) 
+required for [RanWordsTxt.py](../../RanWordsTxt.py).
+
+## LaTeX
+Contains the set of .tex files to construct the pdf and a .bib file containing information for referencing. Images and
+figures used are also located within this directory.
+
 ## Acknowledgments
 I’d like to extend my gratitude to my supervisor Dr Diarmuid O'Donoghue, for first introducing the idea and providing 
 help and guidance whenever needed. I am grateful for the work done by the Sense2Vec team and the provided documentation 
