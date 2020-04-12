@@ -18,7 +18,7 @@ def main(
     glove_dir, in_dir, out_dir, min_count=5, memory=4.0, window_size=15, verbose=2
 ):
     """
-    Step 3: Build vocabulary and frequency counts
+    Step 2: Build vocabulary and frequency counts
 
     Expects a directory of preprocessed .s2v input files and will use GloVe to
     collect unigram counts and construct and shuffle cooccurrence data. See here

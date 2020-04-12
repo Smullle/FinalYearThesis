@@ -42,7 +42,7 @@ def _get_shape(file_):
 )
 def main(in_file, vocab_file, out_dir):
     """
-    Step 5: Export a sense2vec component
+    Step 4: Export a sense2vec component
 
     Expects a vectors.txt and a vocab file trained with GloVe and exports
     a component that can be loaded with Sense2vec.from_disk.

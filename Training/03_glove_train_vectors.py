@@ -28,7 +28,7 @@ def main(
     verbose=2,
 ):
     """
-    Step 4: Train the vectors
+    Step 3: Train the vectors
 
     Expects a file containing the shuffled cooccurrences and a vocab file and
     will output a plain-text vectors file.
