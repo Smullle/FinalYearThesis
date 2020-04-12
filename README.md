@@ -49,6 +49,7 @@ This process is completed using the stanford parser and uses the following pipel
 - TokenizeProcessor
 - MWTProcessor
 - POSProcessor
+
 No lemmatization is preformed to save processing time with large corpus files, more info found here:
 https://stanfordnlp.github.io/stanfordnlp/index.html
 
