@@ -4,13 +4,8 @@ import gensim
 from gensim.test.utils import datapath
 from gensim import utils
 
-# jar = "D:\StanfordModels\stanford-english-corenlp-2018-10-05-models.jar"
+
 nlp = stanfordnlp.Pipeline(processors='tokenize,mwt,pos')  # This sets up a default neural pipeline in English
-
-
-# ner_tagger = StanfordNERTagger(nlp, jar, encoding='utf8')
-# doc = nlp("Barack Obama was born in Hawaii.  He was elected president in 2008.")
-# print(*[word.text + "|" + word.upos for sent in doc.sentences for word in sent.words])
 
 
 class MyCorpus(object):
@@ -48,18 +43,3 @@ for line in data:
 
     print(total_words)
 
-# for block in data:
-#     segments = ([block[x:x + 10] for x in range(0, len(block), 10)])
-#     for segment in segments:
-#         total_words += 10
-#         doc = nlp(' '.join(segment))
-#         output = open('D:\WikiData\Trained\sense2vec\Stanford\Parsed10.txt', "a")
-#         # doc.sentences[0].print_dependencies()
-#         for sent in doc.sentences:
-#             for word in sent.words:
-#                 output.write(*[word.text + "|" + word.upos + " "])
-#
-#         output.close()
-#
-#         if total_words % 100000 == 0:
-#             print(total_words)

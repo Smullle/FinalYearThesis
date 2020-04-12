@@ -12,20 +12,31 @@ s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec"
 verb_file = "/home/shanesmullen/train/vmshare/results/verblist.txt"
 noun_file = "/home/shanesmullen/train/vmshare/results/nounlist.txt"
 
-w2v = gensim.models.Word2Vec.load(w2v_model)
-print("Word2Vec Model Loaded")
-s2v = Sense2Vec().from_disk(s2v_model)
-print("Sense2Vec Model Loaded")
+try:
+    w2v = gensim.models.Word2Vec.load(w2v_model)
+    print("Word2Vec Model Loaded")
+    s2v = Sense2Vec().from_disk(s2v_model)
+    print("Sense2Vec Model Loaded")
+except FileNotFoundError:
+    print("Incorrect model location: ", w2v_model, " or ", s2v_model)
 
-f = open('WordLists/verblist.txt', 'r')
-verbs = f.read().splitlines()
-f.close()
-f = open('WordLists/nounlist.txt', 'r')
-nouns = f.read().splitlines()
-f.close()
+try:
+    f = open('WordLists/verblist.txt', 'r')
+    verbs = f.read().splitlines()
+    f.close()
+    f = open('WordLists/nounlist.txt', 'r')
+    nouns = f.read().splitlines()
+    f.close()
+except FileNotFoundError:
+    print("Vocab lists not found")
 
 
 def wordnet_first_last(word, pos):
+    """
+    Function to pull synsets from wordnet to obtain a list containing first_word_first_synset,
+    last_word_first_synset, last_word_last_synset. :param word: Words to obtain sysnets of :param pos: Part of speech
+    for the given word. :return: List containing first_word_first_synset, last_word_first_synset, last_word_last_synset
+    """
     try:
         synsets = wn.synsets(word, pos=pos)
         first_synset = synsets[0]

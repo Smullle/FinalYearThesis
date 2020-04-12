@@ -10,6 +10,15 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 def word_vec_query(verb, positive=None, negative=None, topn=1):
+    """
+    Function to obtain the most similar vectors for a given word, number of vectors returned depends on topn value.
+    Optional: add or subtract vectors to or from the supplied word using positive or negative args.
+    :param verb: input of single word to return a list of topn most similar vectors
+    :param positive: (optional) word to add to verb vector
+    :param negative: (optional) word to subtract from the verb vectors
+    :param topn: (default = 1) number of cosine similar vectors to return
+    :return: List of topn most similar vectors (tuple of word and similarity value)
+    """
     if verb is None and positive is None:
         return w2v.most_similar(negative, topn=topn)
     elif verb is None and negative is None:
@@ -18,24 +27,32 @@ def word_vec_query(verb, positive=None, negative=None, topn=1):
         return w2v.most_similar(positive, negative, topn=topn)
     word_list = w2v.most_similar(verb, topn=topn)
     ans = []
+    # only return the words not similarity score, required for cleaner results
+    # remove to return a list of tuples
     for word in word_list:
         word = str(word)
         word = word[2:].split(',')[0]
         ans.append(word)
     return ans
 
+
 def sense_vec_query(verb, n=500):
+    """
+    Function to obtain the most similar vectors for a given POS TAGGED word.
+    Number of vectors returned depends on n value, multi-words removed eg. words containing "-" "_" etc.
+    :param verb: input of single POS TAGGED word to return a list of n most similar vectors
+    :param n: (default = 500) number of cosine similar vectors to return
+    :return: List of n most similar vectors (tuple of tagged word and similarity value)
+    """
     query = verb
     assert query in s2v
-    # vector = s2v[query]
-    # freq = s2v.get_freq(query)
     word_list = s2v.most_similar(query, n=n)
     ans = []
     for word in word_list:
         word = str(word)
-        word = word[2:].split('|')[0]
-        z = re.match("^[a-zA-Z]+$", word)
-        if z and word in words.words():
+        word = word[2:].split('|')[0]  # only return the word without POS tag and similarity score
+        z = re.match("^[a-zA-Z]+$", word)  # remove multi-words
+        if z and word in words.words():  # Use nltk dictionary to filter non english words.
             ans.append(word)
     return ans
 
@@ -54,10 +71,13 @@ w2v_model = "/home/shanesmullen/train/vmshare/models/word2vec/word2vec.model"
 s2v_model = "/home/shanesmullen/train/vmshare/models/sense2vec"
 results_file = "/home/shanesmullen/train/vmshare/results/results.csv"
 
-w2v = gensim.models.Word2Vec.load(w2v_model)
-print("Word2Vec Model Loaded")
-s2v = Sense2Vec().from_disk(s2v_model)
-print("Sense2Vec Model Loaded")
+try:
+    w2v = gensim.models.Word2Vec.load(w2v_model)
+    print("Word2Vec Model Loaded")
+    s2v = Sense2Vec().from_disk(s2v_model)
+    print("Sense2Vec Model Loaded")
+except FileNotFoundError:
+    print("Incorrect model location: ", w2v_model, " or ", s2v_model)
 
 results = open(results_file, "w", newline='')
 print("Results File Created at:", results_file)
@@ -108,13 +128,6 @@ results_writer.writerow({'Most Similar': 'run',
 results_writer.writerow({'Most Similar': '',
                          'word2vec': '',
                          'sense2vec': ''})
-
-# write_string += "Most similar"
-# write_string += ("Most similar 'run' " + str(word_vec_query("run")))
-# write_string += ("Most similar 'walked' " + str(word_vec_query("walked")))
-# write_string += ("Most similar 'jogged' " + str(word_vec_query("jogged")))
-# write_string += ("Most similar 'talked' " + str(word_vec_query("talked")))
-# write_string += ("Most similar 'slept' " + str(word_vec_query("slept")))
 
 print("Most Similar Complete")
 ########################################################################################################################
@@ -183,14 +196,6 @@ results_writer.writerow({'Verb to Verb': 'laugh - cry',
                          'sense2vec': s2v.similarity(['laugh' + '|VERB'], ['cry' + '|VERB']),
                          'WordNet': wordnet_similarity('laugh', 'cry', wn.VERB)})
 
-# write_string += ("2similarity('walked', 'talk') " + str(w2v.similarity('walked', 'talk')))
-# write_string += ("2similarity('walked', 'slept') " + str(w2v.similarity('walked', 'slept')))
-# write_string += ("2model2.similarity('run', 'walk') " + str(w2v.similarity('run', 'walk')))
-# write_string += ("2model2.similarity('run', 'drive') " + str(w2v.similarity('run', 'drive')))
-# write_string += ("2model2.similarity('run', 'talk') " + str(w2v.similarity('run', 'talk')))
-# write_string += ("2model2.similarity('run', 'hatter') " + str(w2v.similarity('run', 'hatter')))
-# write_string += ("2model2.similarity('run', 'think') " + str(w2v.similarity('run', 'think')))
-
 print("Verb to Verb Complete")
 ########################################################################################################################
 fieldnames = ['Noun to Noun', 'word2vec', 'sense2vec', 'WordNet']
@@ -251,23 +256,3 @@ results_writer.writerow({'Preposition to Preposition': 'against - for',
                          'sense2vec': s2v.similarity(['against' + '|ADP'], ['for' + '|ADP'])})
 
 print("Preposition to Preposition Complete")
-########################################################################################################################
-
-# write_string += "Logical entailment"
-# write_string += "Compositions"
-# write_string += ("'take' + 'pay'" + str(word_vec_query(None, ["take", "pay"])))
-#
-# write_string += "Opposites"
-# write_string += ("'buy' - 'sell'" + str(word_vec_query(None, ["buy"], ["sell"])))
-# write_string += ("'get' - 'give'" + str(word_vec_query(None, ["get"], ["give"])))
-# write_string += "Difference: 'buy' - 'sell' ~ 'get' - 'give'"
-# # write_string += str((word_vec_query(None, ["buy"], ["sell"])) - (word_vec_query(None, ["get"], ["give"])))
-#
-#
-#
-# results.write("Logical entailment")
-# results.write("Compositions")
-#
-# results.write("Opposites")
-
-########################################################################################################################
