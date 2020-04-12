@@ -26,12 +26,21 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install require
 pip install requirements.txt
 ```
 
-## Training
+## Training Files
 
 Download and store a large corpus of Wikipedia text located [here](https://dumps.wikimedia.org/enwiki/) it is 
 recommended to used a corpus which contains at least 1 billion words.
 
-**Note Steps 2 and 3 must be prefored on a Linux based system, all others are operating system independent.**
+Use [WikiCorpusExtractor.py](../../Training/WikiCorpusExtractor.py) to extract can convert xml dump to txt corpus.
+
+## Training Word2Vec
+
+Use [w2v_train.py](../../Training/w2v_train.py) passing converted xml dump in txt format as in_file.
+Training parameters can be changed here, remove sg=1 to switch to CBOW.
+
+## Training Sense2Vec
+
+**Note Steps 2 and 3 must be preformed on a Linux based system, all others are operating system independent.**
 
 ### Step 1: parse and part of speech (POS) tag each word in the corpus
 Using [Training/01_POS_Tag.py](../../Training/01_POS_Tag.py)

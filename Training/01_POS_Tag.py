@@ -5,7 +5,7 @@ import plac
 
 
 @plac.annotations(
-    in_dir=("Directory with preprocessed .s2v files", "positional", None, str),
+    in_dir=("Path to corpus in txt format", "positional", None, str),
     out_dir=("Path to output directory", "positional", None, str),
 )
 def main(
