@@ -31,6 +31,47 @@ pip install requirements.txt
 Download and store a large corpus of Wikipedia text located [here](https://dumps.wikimedia.org/enwiki/) it is 
 recommended to used a corpus which contains at least 1 billion words.
 
+**Note Steps 2 and 3 must be prefored on a Linux based system, all others are operating system independent.**
+
+### Step 1: parse and part of speech (POS) tag each word in the corpus
+Using [Training/01_POS_Tag.py](../../Training/01_POS_Tag.py)
+
+This process is completed using the stanford parser and uses the following pipelines:
+- TokenizeProcessor
+- MWTProcessor
+- POSProcessor
+No lemmatization is preformed to save processing time with large corpus files, more info found here:
+https://stanfordnlp.github.io/stanfordnlp/index.html
+
+Expects a corpus wile within in_dir in txt format
+Outputs a tagged txt file to the supplied output directory with out_dir
+
+### Step 2: Build vocabulary and frequency counts
+Using [Training/02_glove_build_counts.py](../../Training/02_glove_build_counts.py)
+
+Expects a directory of preprocessed .s2v input files and will use GloVe to
+collect unigram counts and construct and shuffle cooccurrence data. See here
+for installation instructions: https://github.com/stanfordnlp/GloVe
+
+Using Linix:
+Note that this script will call into GloVe and expects you to pass in the
+GloVe build directory (/build if you run the Makefile). The commands will
+also be printed if you want to run them separately.
+
+### Step 3: Train the vectors
+
+Expects a file containing the shuffled cooccurrences and a vocab file and
+will output a plain-text vectors file.
+
+Note that this script will call into GloVe and expects you to pass in the
+GloVe build directory (/build if you run the Makefile). The commands will
+also be printed if you want to run them separately.
+
+### Step 4: Export a sense2vec component
+
+Expects a vectors.txt and a vocab file trained with GloVe and exports
+a component that can be loaded with Sense2vec.from_disk.
+
 ## WordLists
 The two words lists; [nounlist.txt](../../WordLists/nounlist.txt) and [verblist.txt](../../WordLists/verblist.txt) 
 required for [RanWordsTxt.py](../../RanWordsTxt.py).
