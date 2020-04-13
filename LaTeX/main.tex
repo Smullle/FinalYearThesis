@@ -7,7 +7,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[R]{sense2vec}
+\fancyhead[R]{Sense2Vec}
 \fancyhead[L]{\chaptername~\thechapter}
 \fancyfoot{}
 \fancyfoot[R]{\thepage}
@@ -16,21 +16,67 @@
 \usepackage{subcaption}
 \usepackage{float}
 
-\title{
-    {Sense2Vec: Investigating the Advantage of Introducing Part of Speech Tagging When Training Word Embeddings}\\
-    {\large Maynooth University}\\
-    {\includegraphics[scale=0.5]{university}}
-}
-\author{Shane Smullen}
-\date{April 2020}
-
 \begin{document}
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+       
+       \textbf{Sense2Vec: Investigating the Advantage of Introducing Part of Speech Tagging When Training Word Embeddings}
+       
+       \vspace{1.5cm}
+       
+       \textbf{Shane Smullen}
+       
+       \textbf{16304236}
+       
+       \textbf{Final Year Project - 2020}
+       
+       \textbf{B.Sc. Single Honours in Computer Science}
+        \vspace{1.5cm}
+        
+       \includegraphics[width=0.7\textwidth]{university.JPG}
+        \vspace{1.0cm}
+        
+        Department of Computer Science
+        
+        Maynooth University
+        
+        Maynooth, Co, Kildare
+        
+        Ireland
+        
+        \vspace{0.5cm}
+        A thesis submitted in partial fulfilment of the requirements for the B.Sc. Single Honours in Computer Science
+       \vspace{0.8cm}
+       
+       Supervisor: Dr Diarmuid O'Donoghue
 
-\maketitle
+       \vspace{0.5cm}
+
+   \end{center}
+
+\end{titlepage}
+
 
 \begin{abstract}
 Many methods for producing word embeddings have been developed but one project considered the standard, Word2Vec is able to extract context and give the illusion of knowledge when trained on a corpus of text. However it is not without its pitfalls, when investigating Word2Vec's ability to group verbs it does not produce the same level of quality as with noun embeddings. The Sense2Vec project introduces part of speech tagging to the training process allowing for a more refined level of context to be obtained. When investigating verb embeddings specifically a greater relationship was found between verb tenses than originally produced by Word2Vec. Also by making a distinction between words that may be considered a noun or a verb depending on context, a more refined list of similar embeddings is produced.
 \end{abstract}
+
+\chapter*{Declaration}
+I hereby certify that this material, which I now submit for assessment on the program of study as part of BSc. Single Honours in Computer Science qualification, is entirely my own work and has not been taken from the work of others - save and to the extent that such work has been cited and acknowledged within the text of my work.
+
+\vspace{1.5cm}
+
+\noindent
+I hereby acknowledge and accept that this thesis may be distributed to future final year students, as an example of the standard expected of final year projects.
+
+\vspace{1.5cm}
+
+\noindent
+\noindent\begin{tabular}{ll}
+\makebox[2.5in]{\hrulefill} & \makebox[2.5in]{\hrulefill}\\
+Shane Smullen & Date
+\end{tabular}                        
 
 \tableofcontents
 
@@ -54,5 +100,8 @@ Many methods for producing word embeddings have been developed but one project c
 
 \chapter*{Acknowledgements}
 \input{chapters/6acknowledgments}
+
+\chapter*{Appendix}
+\input{chapters/7appendix}
 
 \end{document}
