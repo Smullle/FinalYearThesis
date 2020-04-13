@@ -51,11 +51,13 @@ print("Results File Created at:", r_data)
 results.write("Sense2Vec Head\n")
 head = categories[0][0]
 for cat in categories:
+    results.write(head + ":" + cat[0])
     results.write(str(s2v.similarity([head.lower() + '|VERB'], [cat[0].lower() + '|VERB'])) + ',')
 results.write("\n")
 
 results.write("Word2Vec Head\n")
 for cat in categories:
+    results.write(head + ":" + cat[0])
     results.write(str(w2v.similarity(head.lower(), cat[0].lower())) + ',')
 results.write("\n")
 
