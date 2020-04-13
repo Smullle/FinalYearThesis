@@ -65,5 +65,14 @@ Expects a file containing the shuffled cooccurrences and a vocab file and will o
 \subsection*{Step 4: Export a sense2vec component}
 Expects a vectors.txt and a vocab file trained with GloVe and exports a component that can be loaded with Sense2vec.from\_disk.
 
-\section*{Appendix F: Training Times}
+\section*{Appendix F: Verbs Within Bloom's Taxonomy}
+Below is a list of the action verbs used within each level in Bloom's Taxonomy, this data is used within the BloomsTaxonomy.py file to produce section 4.7 in the results chapter. Further details on the used of this hierarchy can be found in Section 2.5.\\
+knowledge = ["List", "Name", "Identify", "Reproduce"]\\
+understanding = ["Describe", "Explain", "Classify", "Discuss"]\\
+application = ["Apply", "Choose", "Employ", "Operate", "Practice"]\\
+analysis = ["Compare", "Contrast", "Calculate", "Test", "Analyze"]\\
+evaluation = ["Argue", "Assess", "Defend", "Judge", "Summarise"]\\
+create = ["Construct", "Compose", "Create", "Design", "Propose"]
+
+\section*{Appendix G: Training Times}
 No doubt the most complex step in the training process is part of speech tagging the corpus. With a corpus of 15GB this process took place over four days and required the use of a remote instance in Google Cloud, allowing the use of 28GB of RAM to batch process 50000 words at a time using the Stanford Parser. However once this process was competed training the model using GloVe was faster and produced a more a smaller model than that produced by Word2Vec. Training for Word2Vec using the Gensim library was fast relative to the rest of the process, note this process is much faster once a C compiler is installed. However by taking the POS tagging complexity out of the equation, the training time for Sense2Vec was significantly faster than Word2Vec. The process was completed in approximately a quarter of the time and produced a model a quarter the size compared (980MB) to the Word2Vec model (4.2GB) this process is likely due to the use of the GloVe library. For future work it would be worth investigating the benefits and downsides of using GloVe, Gensim or even FastText to train word embeddings.

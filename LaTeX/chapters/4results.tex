@@ -19,7 +19,7 @@ lose - lost          & 0.5954038                              & 0.7762446       
 \end{table}
 
 \noindent
-In the above table \ref{Future - Past Similarity} before comparing Word2Vec and Sense2Vec it is important to note all path similarity values for WordNet are = 1. WordNet in the case of tenses will resort the the base or present form of the verb, as such for "run - ran" the past tense will be queried as "run" giving a score of 1. This is actually a disadvantage of WordNet as storing of verbs in this form results in the loss of context. All words for the Sense2Vec query were tagged with the VERB POS tag and with Word2Vec just the word is supplied. When comparing the two vector systems used, for all comparisons Sense2Vec is much higher most notably with words that could be considered a noun or a verb depending on their context. For example "hold - held" could be interpreted as the verb to hold or the noun to have a hold of something. This idea of collision between verbs and nouns will be discussed further in section 4.2.
+In the above table \ref{Future - Past Similarity} before comparing Word2Vec and Sense2Vec it is important to note all path similarity values for WordNet are = 1. WordNet in the case of tenses will resort to the base or present form of the verb, as such for "run - ran" the past tense will be queried as "run" giving a score of 1. This is actually a disadvantage of WordNet as storing of verbs in this form results in the loss of context. All words for the Sense2Vec query were tagged with the VERB POS tag and with Word2Vec just the word is supplied. When comparing the two vector systems used, for all comparisons Sense2Vec is much higher most notably with words that could be considered a noun or a verb depending on their context. For example "hold - held" could be interpreted as the verb to hold or the noun to have a hold of something. This idea of collision between verbs and nouns will be discussed further in section 4.2.
 
 \section{Collisions}
 Depending on the context of the word in a sentence a it may be interpreted as either a noun or a verb, the English language contains thousands of such words. Preforming a query to obtain the most similar vectors without the separation of verbs and nouns results in a loss of context with Word2Vec.
@@ -68,7 +68,7 @@ evaporate                               & sunk                                  
 \end{table}
 
 \noindent
-Again in table \ref{Collisions "Sink" - Most Similar} there is a clear separation when tagging the word as a noun or a verb. With Word2Vec a list of relevant words are returned but are related to the verb "to sink", a similar list of words are returned from Sense2Vec when tagging it as a verb. However, greater context is obtained when looking at the word as a noun, the list contains object that are use water and these vectors are removed from the verb cluster of vectors.
+Again in table \ref{Collisions "Sink" - Most Similar} there is a clear separation when tagging the word as a noun or a verb. With Word2Vec a list of relevant words are returned but are related to the verb "to sink", a similar list of words are returned from Sense2Vec when tagging it as a verb. However, greater context is obtained when looking at the word as a noun, the list contains object that use water and these vectors are removed from the verb cluster of vectors.
 
 \begin{table}[h]
 \centering
@@ -199,7 +199,7 @@ To attempt to show clear distinction between the two methods further analysis wa
 
 \begin{figure}[H]
 \centering
-  \includegraphics[width=.9\textwidth]{images/s2v_bloom.PNG}
+  \includegraphics[width=\textwidth]{images/s2v_bloom.PNG}
   \caption{Sense2Vec Bloom's Taxonomy}
   \label{fig:bloom_s2v}
 \end{figure}
@@ -215,7 +215,7 @@ For Sense2Vec in figure \ref{fig:bloom_s2v} all levels form a condensed interqua
 \end{figure}
 
 \noindent
-When looking at Word2Vec in figure \ref{fig:bloom_w2v} the interquartile range is much less condensed and with the create category much more values are found outside the interquartile range. The the median of the knowledge category lies well outside the interquartile range of the next category understanding, showing a lack of consistency of similarity score across the levels. While the median of the plots for Word2Vec is closer to 1 in two levels and positively skewed towards on in two others, this is negated by the lack of consistency across the levels with Word2Vec producing a low interquartile range for the knowledge and evaluation levels.
+When looking at Word2Vec in figure \ref{fig:bloom_w2v} the interquartile range is much less condensed and with the create category much more values are found outside the interquartile range. The median of the knowledge category lies well outside the interquartile range of the next category understanding, showing a lack of consistency of similarity score across the levels. While the median of the plots for Word2Vec is closer to 1 in two levels (understanding and create) and positively skewed towards 1 in two others (application and evaluation), this is negated by the lack of consistency across the levels with Word2Vec producing a low interquartile range for the knowledge and evaluation levels.
 
 \begin{figure}[H]
 \centering
@@ -237,3 +237,22 @@ When looking at Word2Vec in figure \ref{fig:bloom_w2v} the interquartile range i
 
 \noindent
 Finally looking the side by side comparison in figure \ref{fig:side_by_side} some distinction can be made between the two methods. For all levels except analysis and understanding the median in figure \ref{fig:w2v} is well outside the interquartile range and in some cases the max value of the corresponding level in figure \ref{fig:s2v}. Sense2Vec appears to show a more consistent similarity score across the six levels, Word2Vec's similarity score tends to fluctuate dramatically with a large difference between the first two levels on the plot in figure \ref{fig:w2v}. Also of note is the max value of both methods, for Sense2Vec the max and mix values are much smaller with fewer values outside the interquartile range. With Word2Vec the opposite is true not only is the interquartile range spread over a larger range of values but also the values outside this range extend further than that of Sense2Vec.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|r|l|r|}
+\hline
+\multicolumn{2}{|c|}{Sense2Vec} & \multicolumn{2}{c|}{Word2Vec}   \\ \hline
+List : List       & 1.0         & List : List      & 1.0          \\ \hline
+List : Describe   & 0.31348008  & List : Describe  & -0.021850454 \\ \hline
+List : Apply      & 0.26178     & List : Apply     & 0.06479468   \\ \hline
+List : Compare    & 0.36929193  & List : Compare   & 0.0019651854 \\ \hline
+List : Argue      & 0.2974751   & List : Argue     & -0.057712294 \\ \hline
+List : Construct  & 0.18598314  & List : Construct & -0.057712294 \\ \hline
+\end{tabular}
+\caption{Comparison Across Categories}
+\label{head_head_comp}
+\end{table}
+
+\noindent
+In table \ref{head_head_comp} the head word of the first level is compared to the head word in each other level. Sense2Vec finds more similarity across levels and shows a general decline in similarity as the comparison progresses down the levels of the taxonomy. Word2Vec shows almost no relation between words across levels and no decline in similarity as the comparison proceeds down the levels. A full list of the verbs on each level of the taxonomy and the names of each category is located in Appendix F.
