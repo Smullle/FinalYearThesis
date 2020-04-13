@@ -10,7 +10,7 @@ The current de facto standard for representing words in vector space is Word2vec
 \end{enumerate}
 
 \noindent
-Word2vec can be trained in two ways Continuous Bag-Of-Words (CBOW) or continuous Skip-gram (SG). CBOW will attempt to guess the output; a single word from surrounding words and generally is faster to train. While SG will attempt to guess context words from a single word and tends to work better when only a smaller corpus is available. This choice must be made at the begining of training and generally two models are created one for each method. \cite{Mikolov}
+Word2vec can be trained in two ways Continuous Bag-Of-Words (CBOW) or continuous Skip-gram (SG). CBOW will attempt to guess the output; a single word from surrounding words and generally is faster to train. While SG will attempt to guess context words from a single word and tends to work better when only a smaller corpus is available. This choice must be made at the begining of training and generally two models are created one for each method. \cite{Mikolov} For more examples and distinctions between the two see Appendix A.
 
 Word2vec has many strong use cases with a focus in information retrieval and knowledge discovery. One such example is where Word2vec was used to identify new chemical compounds based on specific properties. In this paper the training corpus was approximately 3.3 million abstracts from 1000 different journals. By looking at relations between different compounds using analogies learned during the training process. In this case Word2vec was integral in the training process, chemical formulae were included in normalised form and trained using skip-gram. The end result was the ability to enter a normalised formulae with the SG model returning a list of context words some of which being a property of the supplied compound such as thin, magnetic etc. \cite{Tshitoyan}
 
@@ -19,7 +19,7 @@ One of the strengths of Word2Vec is the ability to subtract two vectors and add 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[]{images/learned_relationships}
+    \includegraphics[width=\textwidth]{images/learned_relationships}
     \caption{Word pair relationships}
     \label{fig:table_relations}
 \end{figure}
@@ -34,7 +34,7 @@ In figure ~\ref{fig:table_relations} the subtraction vectors appear in the left 
  
  \begin{figure}[h]
     \centering
-    \includegraphics[width=.8\textwidth]{images/cosine_sim.png}
+    \includegraphics[width=.55\textwidth]{images/cosine_sim.png}
     \caption{Cosine similarity use case}
     \label{fig:cosine_vectors}
 \end{figure}
@@ -52,7 +52,7 @@ Grouping words based around a specific category is often a difficult task, with 
 
 \begin{figure}[H]
 \centering
-  \includegraphics[width=\textwidth]{images/bloom.jpg}
+  \includegraphics[width=.9\textwidth]{images/bloom.jpg}
   \caption{Bloom's Taxonomy}
   \label{fig:bloom}
 \end{figure}
