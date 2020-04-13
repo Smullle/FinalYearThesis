@@ -46,3 +46,17 @@ for cat in categories:
         for comp in comp_words:
             results.write(str(w2v.similarity(word.lower(), comp.lower())) + ',')
     results.write("\n")
+
+# Compare head word in each category
+results.write("Sense2Vec Head\n")
+head = categories[0][0]
+for cat in categories:
+    results.write(str(s2v.similarity([head.lower() + '|VERB'], [cat[0].lower() + '|VERB'])) + ',')
+results.write("\n")
+
+results.write("Word2Vec Head\n")
+for cat in categories:
+    results.write(str(s2v.similarity(head.lower(), cat[0].lower())) + ',')
+results.write("\n")
+
+results.close()

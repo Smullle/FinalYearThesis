@@ -34,13 +34,13 @@ In figure ~\ref{fig:table_relations} the subtraction vectors appear in the left 
  
  \begin{figure}[h]
     \centering
-    \includegraphics[scale=0.1]{images/placeholder_vectors}
+    \includegraphics[width=.8\textwidth]{images/cosine_sim.png}
     \caption{Cosine similarity use case}
     \label{fig:cosine_vectors}
 \end{figure}
 
 \noindent
-As seen in figure \ref{fig:cosine_vectors} the red and blue vectors are closest by magnitude however by ignoring magnitude and just looking at angle the red vector is considered to be related to green. When a word appears in different contexts, its vector gets moved in different directions during updates. The final vector then represents some sort of weighted average over the various contexts. 
+As seen in figure \ref{fig:cosine_vectors} \cite{Wang1} two vectors are separated by some distance which is a combination of their length and the angle between them. By using the cosine angle between A and B and avoiding length the definition of \textit{closest vector} changes. As A or B appears more frequently in the corpus and in turn increases the length of the vector the same cosine angle will hold. When a word appears in different contexts, its vector gets pulled or pushed in different directions changing the cosine angle. The final vector then represents some sort of weighted average over the various contexts. 
 
 \section{Word Depth} 
 The definition of word depth used here is in reference to semantic lexicons, these semantic lexicons are made up of entities. Each lexical entity is connected by semantic relations. In WordNet, entities with multiple meanings (synonymous) are grouped into what it calls synsets. WordNet is a lexical database project from Princeton University which includes four categories noun, verbs, adverbs and adjectives. When comparing noun and verb depth it is required to look at how WordNet data is organised into hierarchies. These hierarchies are created through the use of hypernyms. \textit{Y is a hypernym of X if every X is a (kind of) Y.} Noun hierarchies are far deeper than verb hierarchies.
